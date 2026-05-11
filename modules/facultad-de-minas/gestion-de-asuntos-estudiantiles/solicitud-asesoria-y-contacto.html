@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asesoría, Contacto y Ubicación – GAE | Facultad de Minas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              blue:       '#1C4587',
+              blueDark:   '#163570',
+              blueLight:  '#2D62B5',
+              yellow:     '#F5B01B',
+              yellowDark: '#D4960E',
+            },
+            page:   '#F7F8FA',
+            card:   '#FFFFFF',
+            border: '#E8ECF0',
+            text: {
+              dark: '#1A1D23',
+              mid:  '#4B5563',
+              soft: '#9CA3AF',
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --green-800: #004D37;
+      --green-600: #1A7A5E;
+      --green-100: #E3F2ED;
+      --gold:      #F5B01B;
+      --gold-dark: #D4960E;
+      --page-bg:   #F7F8FA;
+      --card-bg:   #FFFFFF;
+      --border:    #E8ECF0;
+      --text-900:  #1A1D23;
+      --text-600:  #4B5563;
+      --text-400:  #9CA3AF;
+      --r-md: 12px; --r-lg: 20px;
+    }
+
+    /* ── NAVBAR ── */
+    .custom-navbar { background-color: #1C4587; height: 55px; }
+    .nav-scroll { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb a { color: var(--gold); text-decoration: none; transition: opacity .15s; }
+    .breadcrumb a:hover { opacity: .75; }
+
+    /* ── CONTACT CARDS ── */
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .contact-card:hover {
+      box-shadow: 0 8px 28px rgba(28,69,135,.10);
+      transform: translateY(-2px);
+    }
+    .contact-icon {
+      width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    /* ── MAP ── */
+    .map-wrapper {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(28,69,135,.10);
+    }
+    .map-wrapper iframe { display: block; width: 100%; height: 380px; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: linear-gradient(135deg, #EBF3FE 0%, #dbeafe 100%);
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid #1C4587;
+      border-radius: var(--r-md);
+      padding: 1.25rem 1.5rem;
+    }
+
+    /* ── QUICK LINKS ── */
+    .quick-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--gold-dark); font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; transition: color .2s, gap .2s;
+    }
+    .quick-link:hover { color: #1C4587; gap: 0.75rem; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--green-600); background: var(--green-100);
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 0.75rem;
+    }
+
+    /* ── DIVIDER ── */
+    .gold-divider {
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      border-radius: 2px; border: none; margin: 0.75rem 0 0;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased bg-page text-text-dark">
+
+  <!-- ════ HERO ════ -->
+  <!-- Se eliminó el Hero Section-->
+  <!-- ════ NAVBAR ════ -->
+  <nav class="custom-navbar text-white shadow-md relative z-20 flex items-center">
+    <div class="w-full flex justify-center items-center h-full">
+      <ul class="nav-scroll flex items-center justify-center gap-0 text-sm font-medium whitespace-nowrap overflow-x-auto h-full px-4">
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Inicio</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Acerca de la oficina</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Gestión de calidad</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Gestión de la información</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Flujo de atención</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Preguntas Frecuentes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ════ MAIN CONTENT ════ -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 pb-20">
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+
+      <!-- ── LEFT COLUMN: Contact info + highlight ── -->
+      <div class="lg:col-span-2 flex flex-col gap-6">
+
+        <!-- Section header -->
+        <div>
+          <span class="section-label">Canales de atención</span>
+          <h2 class="text-2xl font-bold text-text-dark leading-tight mt-1">
+            Ponte en contacto<br>con nosotros
+          </h2>
+          <hr class="gold-divider">
+        </div>
+
+        <!-- Email -->
+        <div class="contact-card">
+          <div class="contact-icon bg-blue-50 text-brand-blue">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-text-soft mb-1">
+              Correo electrónico / Email
+            </p>
+            <a href="mailto:asesorestu_med@unal.edu.co"
+               class="text-brand-blue font-semibold text-sm hover:underline break-all">
+              asesorestu_med@unal.edu.co
+            </a>
+            <p class="text-text-mid text-xs mt-1 italic">
+              Feel free to write in English if you need to.
+            </p>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-card">
+          <div class="contact-icon bg-green-50 text-green-700">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-text-soft mb-1">
+              Teléfono / Phone number
+            </p>
+            <a href="tel:+576044255083"
+               class="text-text-dark font-semibold text-sm hover:text-brand-blue transition">
+              (+57) 604 425 50 83
+            </a>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="contact-card">
+          <div class="contact-icon bg-yellow-50 text-brand-yellowDark">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-text-soft mb-1">
+              Ubicación / Location
+            </p>
+            <p class="text-text-dark font-medium text-sm leading-relaxed">
+              Carrera 80 No 65-223 · Bloque M4<br>
+              Primer Piso · Oficina GAE
+            </p>
+            <p class="text-text-mid text-xs mt-1">
+              Medellín · Antioquia · Colombia
+            </p>
+          </div>
+        </div>
+
+        <!-- Virtual sessions highlight -->
+        <div class="highlight-box">
+          <div class="flex gap-3 items-start">
+            <div class="text-brand-blue text-lg mt-0.5 flex-shrink-0">
+              <i class="fa-solid fa-video"></i>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-brand-blue mb-1">Charlas virtuales</p>
+              <p class="text-text-mid text-sm leading-relaxed">
+                Recuerda que también puedes recibir información asistiendo a las charlas virtuales.
+                <a href="#" class="text-brand-blue font-bold hover:underline">¡Conéctate!</a>
+                con el asesor estudiantil de la Facultad de Minas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="bg-white border border-border rounded-xl p-5 flex flex-col gap-3">
+          <p class="text-xs font-semibold uppercase tracking-widest text-text-soft mb-1">
+            Enlaces de interés
+          </p>
+          <a href="#" class="quick-link">
+            <i class="fa-regular fa-calendar text-sm"></i>
+            Calendario de Sede
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <div class="h-px bg-border"></div>
+          <a href="#" class="quick-link">
+            <i class="fa-regular fa-envelope text-sm"></i>
+            Contáctenos – Contact Us
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <div class="h-px bg-border"></div>
+          <a href="#" class="quick-link">
+            <i class="fa-regular fa-star text-sm"></i>
+            Califique nuestro servicio
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <div class="h-px bg-border"></div>
+          <a href="#" class="quick-link">
+            <i class="fa-solid fa-shield-halved text-sm"></i>
+            Protección de Datos Personales
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT COLUMN: Map + office hours ── -->
+      <div class="lg:col-span-3 flex flex-col gap-6">
+
+        <!-- Section header -->
+        <div>
+          <span class="section-label">Cómo llegar</span>
+          <h2 class="text-2xl font-bold text-text-dark leading-tight mt-1">
+            Encuéntranos en el campus
+          </h2>
+          <hr class="gold-divider">
+        </div>
+
+        <!-- Google Maps embed -->
+        <div class="map-wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5!2d-75.5772!3d6.2624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429e2f1c2a3b5%3A0x0!2sFacultad%20de%20Minas%2C%20Universidad%20Nacional%20de%20Colombia!5e0!3m2!1ses!2sco!4v1683900000000!5m2!1ses!2sco&q=Facultad+de+Minas+Universidad+Nacional+Medell%C3%ADn"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Oficina GAE – Facultad de Minas"
+          ></iframe>
+        </div>
+
+        <!-- Address card under map -->
+        <div class="bg-white border border-border rounded-xl p-5 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-full bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0 text-lg">
+            <i class="fa-solid fa-map-pin"></i>
+          </div>
+          <div>
+            <p class="font-semibold text-text-dark text-sm">Oficina Gestión Asuntos Estudiantiles GAE</p>
+            <p class="text-text-mid text-sm mt-0.5">Carrera 80 No 65-223 · Bloque M4 · Primer Piso</p>
+            <p class="text-text-soft text-xs mt-0.5">Medellín, Antioquia, Colombia</p>
+            <a
+              href="https://maps.google.com/?q=Facultad+de+Minas+Universidad+Nacional+Medellin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 mt-3 text-brand-blue text-xs font-semibold hover:underline"
+            >
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              Abrir en Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- Office hours -->
+        <div class="bg-white border border-border rounded-xl overflow-hidden">
+          <div class="px-5 py-4 border-b border-border flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center text-sm flex-shrink-0">
+              <i class="fa-regular fa-clock"></i>
+            </div>
+            <h3 class="font-semibold text-text-dark text-sm">Horario de atención</h3>
+          </div>
+          <div class="divide-y divide-border">
+            <div class="flex items-center justify-between px-5 py-3.5">
+              <span class="text-text-mid text-sm">Lunes – Viernes</span>
+              <span class="text-text-dark font-semibold text-sm">8:00 a.m. – 5:00 p.m.</span>
+            </div>
+            <div class="flex items-center justify-between px-5 py-3.5 bg-gray-50/60">
+              <span class="text-text-mid text-sm">Sábados, domingos y festivos</span>
+              <span class="text-red-500 font-semibold text-sm">Cerrado</span>
+            </div>
+          </div>
+          <div class="px-5 py-3 bg-amber-50/60 border-t border-amber-100 flex items-start gap-2">
+            <i class="fa-solid fa-circle-info text-amber-500 text-xs mt-0.5 flex-shrink-0"></i>
+            <p class="text-amber-700 text-xs leading-relaxed">
+              El horario puede variar durante períodos de receso académico o festividades institucionales.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ════ FOOTER BAND ════ -->
+  <footer class="bg-brand-blue border-t-2 border-brand-yellow/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-white/50 text-xs">
+        © <span id="year"></span> <span class="text-white/70 font-medium">Oficina GAE · Facultad de Minas · UNAL</span>
+      </p>
+      <div class="flex items-center gap-4 text-white/50 text-xs">
+        <a href="#" class="hover:text-brand-yellow transition-colors">Protección de datos</a>
+        <span>·</span>
+        <a href="#" class="hover:text-brand-yellow transition-colors">Califique el servicio</a>
+        <span>·</span>
+        <a href="#" class="hover:text-brand-yellow transition-colors">Actualización: 04/05/2026</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
