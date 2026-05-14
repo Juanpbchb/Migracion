@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GAE – Gestión de Asuntos Estudiantiles | Facultad de Minas</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <script>
     tailwind.config = {
       theme: {
@@ -18,53 +16,38 @@
           fontFamily: { sans: ['Inter', 'sans-serif'] },
           colors: {
             brand: {
-              blue:      '#1C4587',   
-              blueDark:  '#163570',   
-              blueLight: '#2D62B5',   
-              yellow:    '#F5B01B',   
+              blue:      '#1C4587',
+              blueDark:  '#163570',
+              blueLight: '#2D62B5',
+              yellow:    '#F5B01B',
               yellowDark:'#D4960E',
             },
-            page:   '#F7F8FA',        
-            card:   '#FFFFFF',        
-            border: '#E8ECF0',        
+            page:   '#F7F8FA',
+            card:   '#FFFFFF',
+            border: '#E8ECF0',
             text: {
-              dark: '#1A1D23',        
-              mid:  '#4B5563',        
-              soft: '#9CA3AF',        
-            },
-            icon: {
-              greenBg:  '#EAF4EC', green:  '#2E8B57',
-              blueBg:   '#EBF3FE', blue:   '#2563EB',
-              yellowBg: '#FEF3C7', yellow: '#D97706',
-              purpleBg: '#F3E8FF', purple: '#7C3AED',
+              dark: '#1A1D23',
+              mid:  '#4B5563',
+              soft: '#9CA3AF',
             },
           }
         }
       }
     }
   </script>
-
   <style>
-        /* ════════════════════════════════════════
-       DESIGN TOKENS — edit here to retheme
-    ════════════════════════════════════════ */
     :root {
-      /* UNAL greens */
       --green-900: #002A1E;
-      --green-800: #004D37;   /* primary institutional */
+      --green-800: #004D37;
       --green-700: #005C42;
       --green-600: #1A7A5E;
       --green-500: #2D9470;
       --green-200: #C2E0D6;
       --green-100: #E3F2ED;
       --green-50:  #F0F8F5;
-
-      /* Gold accent */
       --gold:      #F5B01B;
       --gold-dark: #D4960E;
       --gold-light:#FEF3C7;
-
-      /* Neutrals */
       --page-bg:  #F4F6F4;
       --card-bg:  #FFFFFF;
       --border:   #DDE8E4;
@@ -72,321 +55,117 @@
       --text-700: #2D3E37;
       --text-500: #556B60;
       --text-300: #97AFA7;
-
-      /* Typography */
       --font-display: "Ancizar sans", Tahoma, Geneva, sans-serif;
       --font-body:    "Ancizar sans", Tahoma, Geneva, sans-serif;
-
-      /* Radii */
-      --r-sm: 6px;
-      --r-md: 12px;
-      --r-lg: 20px;
-      --r-xl: 28px;
+      --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 28px;
     }
 
     #newsTrack { transition: transform 0.4s cubic-bezier(.4,0,.2,1); }
+
     .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 9999px;
-      background: white;
-      border: 1px solid #E8ECF0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10; width: 2.5rem; height: 2.5rem; border-radius: 9999px;
+      background: white; border: 1px solid #E8ECF0;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1);
       transition: border-color .2s, color .2s, opacity .2s;
     }
     .carousel-arrow:disabled { opacity: .35; cursor: default; }
     .carousel-arrow:not(:disabled):hover { border-color: #1C4587; color: #1C4587; }
+
     .nav-scroll { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
     .nav-scroll::-webkit-scrollbar { display: none; }
+
     .video-thumb { overflow: hidden; border-radius: .5rem; }
     .video-thumb img { transition: transform .35s ease; }
     .video-card:hover .video-thumb img { transform: scale(1.04); }
-    .service-card { transition: box-shadow .2s, transform .2s; }
-    .service-card:hover { box-shadow: 0 8px 28px rgba(28,69,135,.10); transform: translateY(-2px); }
 
-    /* 1. PARÁMETROS DE LA BARRA DE NAVEGACIÓN (NAVBAR)
-      Aquí controlas la altura general de toda la barra azul. 
-    */
+    /* ── NAVBAR ── */
     .custom-navbar {
       background-color: #1C4587;
-      /* Cambia este valor para hacer la barra más alta o más baja. Ej: 60px, 80px */
-      height: 55px; 
+      height: 55px;
     }
 
-    /* 2. PARÁMETROS DE LA IMAGEN DEL LOGO
-      Aquí controlas cómo se comporta tu imagen "edited-image.png"
-    */
-    .logo-container {
-      /* La altura siempre será el 100% de la navbar (los 60px de arriba) */
-      height: 100%; 
-      display: flex;
-    }
-
-    .logo-image {
-      height: 55px; /* La imagen fuerza su altura para igualar al navbar */
-      
-      /* Cambia este ancho para estirar o encoger la imagen. 
-         Puedes usar px (ej. 350px) o % o vw. 
-         Si notas que la imagen se deforma mucho, ajusta este valor. */
-      width: 270px; 
-      
-      /* object-fill: Estira la imagen ignorando proporciones para rellenar el ancho/alto definido.
-         object-cover: Mantiene proporción, pero puede recortar partes.
-         Intenta cambiar a 'object-cover' si se ve muy aplastada. */
-      object-fit: fill; 
-      display: block;
-    }
-
-    /* Ajustes para móviles: Esconder la imagen ancha para evitar que rompa el layout */
-    @media (max-width: 768px) {
-        .logo-container {
-            display: none; /* En móviles, la imagen ancha no cabrá. La ocultamos por ahora. */
-        }
-        .custom-navbar {
-            height: auto; /* Dejamos que el nav crezca según el texto en móviles */
-        }
-    }
-
-    /* ════════════════════════════════════════════════
-       ESTILOS PARA LOS BOTONES TIPO TILE (nav-tile)
-    ════════════════════════════════════════════════ */
-    .section-nav {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1.25rem;
-    }
-    /* Responsive: 2 columnas en tablets, 4 en PC */
-    @media (min-width: 640px) { .section-nav { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .section-nav { grid-template-columns: repeat(4, 1fr); } }
-
-    .nav-tile {
-      position: relative;
-      display: block;
-      height: 300px;
-      border-radius: 1rem;
-      overflow: hidden;
-      text-decoration: none;
-      /* Usa el color por defecto, pero se sobrescribe con la variable --tile-color */
-      background-color: var(--tile-color, #4B5563);
-      background-image: var(--tile-bg);
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    /* Capa de color superpuesta para que el texto sea legible sobre la imagen */
-    .nav-tile::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: var(--tile-color);
-      opacity: 0.85; /* Ajusta entre 0 y 1 para ver más o menos la imagen de fondo */
-      transition: opacity 0.3s ease;
-    }
-
-    .nav-tile:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
-    }
-    
-    .nav-tile:hover::before {
-      opacity: 0.95; /* Se oscurece al pasar el cursor */
-    }
-
-    .tile-trigger {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      padding: 1.5rem;
-      text-align: center;
-      color: white;
-    }
-
-    .tile-icon {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      /* Opcional: un pequeño círculo blanco semitransparente detrás del ícono */
-      background: rgba(255,255,255,0.2);
-      width: 80px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-
-    .tile-label {
-      font-weight: 700;
-      font-size: 1.15rem;
-      line-height: 1.2;
-    }
-
-    /* ════════════════════════════════════════
-       SERVICE TILES
-    ════════════════════════════════════════ */
-    .tiles-section {
-      padding: 5rem 0 4rem;
-    }
-    .tiles-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
+    /* ── TILES ── */
+    .tiles-section { padding: 5rem 0 4rem; }
+    .tiles-header { text-align: center; margin-bottom: 2.5rem; }
     .tiles-header h2 {
       font-family: var(--font-display);
       font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 700;
-      color: var(--text-900);
-      line-height: 1.2;
+      font-weight: 700; color: var(--text-900); line-height: 1.2;
     }
-    .tiles-header p {
-      margin-top: 0.5rem;
-      font-size: 0.95rem;
-      color: var(--text-500);
-    }
-    .tiles-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-    }
+    .tiles-header p { margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-500); }
+
+    .tiles-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
     @media (min-width: 640px)  { .tiles-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .tiles-grid { grid-template-columns: repeat(4, 1fr); } }
 
     .tile {
-      position: relative;
-      height: 280px;
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      display: block;
-      cursor: pointer;
-      background-color: var(--green-800);
-      background-size: cover;
-      background-position: center;
+      position: relative; height: 280px;
+      border-radius: var(--r-lg); overflow: hidden;
+      display: block; cursor: pointer;
+      background-size: cover; background-position: center;
       transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s;
     }
+    /* Fallback solid color shown when image fails to load */
+    .tile-green  { background-color: #004D37; }
+    .tile-blue   { background-color: #143C8C; }
+    .tile-amber  { background-color: #92400E; }
+    .tile-purple { background-color: #4C1D95; }
+
     .tile:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.22); }
 
-    .tile-overlay {
-      position: absolute;
-      inset: 0;
-      transition: opacity .3s;
-    }
+    .tile-overlay { position: absolute; inset: 0; transition: opacity .3s; }
     .tile:hover .tile-overlay { opacity: .92; }
-
-    /* Tile-specific gradient overlays */
     .tile-green .tile-overlay  { background: linear-gradient(160deg, rgba(0,77,55,.82) 0%, rgba(0,77,55,.60) 100%); }
     .tile-blue .tile-overlay   { background: linear-gradient(160deg, rgba(20,60,140,.82) 0%, rgba(20,60,140,.60) 100%); }
     .tile-amber .tile-overlay  { background: linear-gradient(160deg, rgba(146,64,14,.82) 0%, rgba(146,64,14,.60) 100%); }
     .tile-purple .tile-overlay { background: linear-gradient(160deg, rgba(76,29,149,.82) 0%, rgba(76,29,149,.60) 100%); }
 
     .tile-body {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      color: #fff;
-      gap: 1rem;
+      position: relative; z-index: 2; height: 100%;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 2rem 1.5rem;
+      text-align: center; color: #fff; gap: 1rem;
     }
     .tile-icon-ring {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
+      width: 72px; height: 72px; border-radius: 50%;
       border: 2px solid rgba(255,255,255,.35);
       background: rgba(255,255,255,.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 1.8rem;
       transition: background .3s, border-color .3s;
       backdrop-filter: blur(4px);
     }
-    .tile:hover .tile-icon-ring {
-      background: rgba(255,255,255,.22);
-      border-color: rgba(255,255,255,.6);
-    }
-    .tile-name {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      line-height: 1.25;
-    }
-    .tile-desc {
-      font-size: 0.8rem;
-      font-weight: 300;
-      color: rgba(255,255,255,.72);
-      line-height: 1.5;
-    }
+    .tile:hover .tile-icon-ring { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.6); }
+    .tile-name  { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; line-height: 1.25; }
+    .tile-desc  { font-size: 0.8rem; font-weight: 300; color: rgba(255,255,255,.72); line-height: 1.5; }
     .tile-arrow {
-      position: absolute;
-      bottom: 1.25rem;
-      right: 1.25rem;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+      position: absolute; bottom: 1.25rem; right: 1.25rem;
+      width: 32px; height: 32px; border-radius: 50%;
       background: rgba(255,255,255,.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 0.8rem;
       transition: background .2s, transform .2s;
     }
     .tile:hover .tile-arrow { background: rgba(255,255,255,.3); transform: translate(2px,-2px); }
 
-        /* subtle pattern overlay */
-    .instructivos-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 50%, rgba(245,176,27,.06) 0%, transparent 55%),
-        radial-gradient(circle at 80% 20%, rgba(45,148,112,.10) 0%, transparent 45%);
-      pointer-events: none;
-    }
-
     .section-label {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--green-600);
-      background: var(--green-100);
-      padding: 4px 12px;
-      border-radius: 999px;
-      margin-bottom: 0.75rem;
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--green-600); background: var(--green-100);
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 0.75rem;
     }
-
-
   </style>
 </head>
-
 <body class="font-sans antialiased text-text-dark bg-page">
+  
 
-  <!-- ════════════════════════════════════════════════
-       HERO
-  ════════════════════════════════════════════════ -->
+  <!-- ════ HERO ════ -->
   <section class="relative w-full min-h-[400px] md:min-h-[440px] flex items-center bg-black">
     <div class="absolute inset-0">
       <img
-        src="Imagen_Campus_Minas_Vista_Desde_Arriba.jpg"
+        src = "assets\images\home\m4-con-letrero-sin-telefono-rojo-recorte.jpg"
         alt="Campus Facultad de Minas"
         class="w-full h-full object-cover opacity-55"
       >
@@ -396,13 +175,13 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
         <div class="md:w-7/12">
           <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-1 drop-shadow-md">
-            Oficina de Gestión de<br>Asuntos Estudiantiles
+            Gestión de<br>Asuntos Estudiantiles
           </h1>
           <h2 class="text-xl sm:text-2xl font-bold text-brand-yellow mt-2 mb-4 drop-shadow">
             Facultad de Minas
           </h2>
           <p class="text-white/85 text-base max-w-lg leading-relaxed">
-            Acompañamos tu trayectoria académica y personal a través de servicios, orientación y apoyo integral para una vida universitaria exitosa.
+            Apoyo a la gestión administrativa asociada al trámite de las solicitudes estudiantiles ante el Consejo de la Facultad de Minas y otros servicios.
           </p>
         </div>
         <div class="flex flex-col gap-3 md:items-end w-full sm:w-auto">
@@ -417,63 +196,37 @@
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════════════
-       SECONDARY NAV CON LA IMAGEN EDITADA
-  ════════════════════════════════════════════════ -->
-  <nav class="custom-navbar text-white flex flex-col md:flex-row shadow-md relative z-20">
-      
-      <!-- CONTENEDOR DE TU IMAGEN -->
-      <!-- Ocupa la izquierda sin espacios (p-0 m-0) -->
-      <a href="#" class="logo-container p-0 m-0"> 
-          <!-- Reemplaza el src con tu archivo edited-image.png -->
-          <img 
-            src="image_imgupscaler.ai_Beta_2K.jpg" 
-            alt="GAE Logo" 
-            class="logo-image"
-            onerror="this.src='https://via.placeholder.com/400x60?text=EDITED+IMAGE'"
-          >
-      </a>
-
-      <!-- ENLACES DE NAVEGACIÓN -->
-      <!-- Ocupan el resto del espacio (flex-1) -->
-         <!-- Nav links -->
-        <div class="flex-1 flex justify-start items-center h-full pl-[0px]">
-            <ul class="nav-scroll flex items-center justify-start gap-0 text-sm font-medium whitespace-nowrap overflow-x-auto w-full h-full pr-4">
-            <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Acerca de la oficina</a></li>
-            <li class="text-white/30 select-none hidden sm:block">|</li>
-            <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Gestión de calidad</a></li>
-            <li class="text-white/30 select-none hidden sm:block">|</li>
-            <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Gestión de la información</a></li>
-            <li class="text-white/30 select-none hidden sm:block">|</li>
-            <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Flujo de atención</a></li>
-            <li class="text-white/30 select-none hidden sm:block">|</li>
-            <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Preguntas Frecuentes</a></li>
-            </ul>
-        </div>
-    
+  <!-- ════ NAVBAR — logo removed, links centered ════ -->
+  <nav class="custom-navbar text-white shadow-md relative z-20 flex items-center">
+    <div class="w-full flex justify-center items-center h-full">
+      <ul class="nav-scroll flex items-center justify-center gap-0 text-sm font-medium whitespace-nowrap overflow-x-auto h-full px-4">
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Acerca de la oficina</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Gestión de calidad</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Gestión de la información</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Flujo de atención</a></li>
+        <li class="text-white/30 select-none hidden sm:block">|</li>
+        <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors">Preguntas Frecuentes</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- ════════════════════════════════════════════════
-       MAIN CONTENT
-  ════════════════════════════════════════════════ -->
-  
+  <!-- ════ MAIN CONTENT ════ -->
   <main class="pb-20">
 
+    <!-- Tiles -->
     <section class="tiles-section">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="tiles-header">
-          <span class="section-label">Servicios en línea</span>
-          <h2>¿Qué necesitas hoy?</h2>
-          <p>Accede directamente a los trámites y recursos más utilizados</p>
+        <div class="tiles-header flex flex-col items-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-text-dark">Servicios en línea</h2>
+          <div class="w-16 h-1.5 bg-brand-yellow mt-4 rounded-full"></div>
         </div>
-
-
         <div class="tiles-grid">
 
-          <!-- Solicitudes -->
-          <a class="tile tile-green"
-            href="#solicitudes"
-            style="background-image: url('Solicitudes_GAE.jpg');">
+          <a class="tile tile-green" href="#solicitudes"
+            style="background-image: url('assets/images/home/solicitudes.jpg');">
             <div class="tile-overlay"></div>
             <div class="tile-body">
               <div class="tile-icon-ring"><i class="fa-regular fa-pen-to-square"></i></div>
@@ -485,10 +238,8 @@
             <div class="tile-arrow"><i class="fa-solid fa-arrow-right"></i></div>
           </a>
 
-          <!-- Constancias -->
-          <a class="tile tile-blue"
-            href="#constancias"
-            style="background-image: url('Constancia-1.jpg');">
+          <a class="tile tile-blue" href="#constancias"
+            style="background-image: url('assets/images/home/constancia.jpg');">
             <div class="tile-overlay"></div>
             <div class="tile-body">
               <div class="tile-icon-ring"><i class="fa-regular fa-id-badge"></i></div>
@@ -500,10 +251,8 @@
             <div class="tile-arrow"><i class="fa-solid fa-arrow-right"></i></div>
           </a>
 
-          <!-- Calendarios — better image: academic desk calendar -->
-          <a class="tile tile-amber"
-            href="#calendarios"
-            style="background-image: url('Calendario-GAE.jpg');">
+          <a class="tile tile-amber" href="#calendarios"
+            style="background-image: url('assets/images/home/calendario.jpg');">
             <div class="tile-overlay"></div>
             <div class="tile-body">
               <div class="tile-icon-ring"><i class="fa-solid fa-calendar-days"></i></div>
@@ -515,10 +264,8 @@
             <div class="tile-arrow"><i class="fa-solid fa-arrow-right"></i></div>
           </a>
 
-          <!-- Normativa -->
-          <a class="tile tile-purple"
-            href="#normativa"
-            style="background-image: url('Constancias_Normativas.jpg');">
+          <a class="tile tile-purple" href="#normativa"
+            style="background-image: url('assets/images/home/normativa.jpg');">
             <div class="tile-overlay"></div>
             <div class="tile-body">
               <div class="tile-icon-ring"><i class="fa-solid fa-scale-balanced"></i></div>
@@ -534,17 +281,14 @@
       </div>
     </section>
 
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><hr class="border-border"></div>
-    
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><hr class="border-border"></div>
 
+    <!-- Noticias -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-7">
         <div>
           <h2 class="text-2xl font-bold text-text-dark mb-1">Noticias</h2>
-          <p class="text-text-mid text-sm">Mantente informado sobre las últimas novedades, eventos y comunicados.</p>
+          <p class="text-text-mid text-sm">Información sobre las últimas novedades, eventos y comunicados.</p>
         </div>
         <a href="#" class="text-brand-blue font-semibold text-sm hover:underline flex items-center gap-1.5 shrink-0">
           Ver todas las noticias <i class="fa-solid fa-arrow-right text-xs"></i>
@@ -612,20 +356,23 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><hr class="border-border"></div>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-7">
-        <div>
-          <h2 class="text-2xl font-bold text-text-dark mb-1">Instructivos</h2>
-          <p class="text-text-mid text-sm">Explora contenidos audiovisuales sobre servicios, procesos y consejos útiles.</p>
-        </div>
+    <!-- Instructivos -->
+    <section style="position:relative; overflow:hidden; width:100%;">
+      <div style="position:absolute;inset:-40px;background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600');background-size:cover;background-position:center;filter:blur(2px);opacity:0.10;transform:scale(1.1);z-index:0;pointer-events:none;"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style="position:relative;z-index:1;">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-7">
+          <div>
+            <h2 class="text-2xl font-bold text-text-dark mb-1">Instructivos</h2>
+            <p class="text-text-mid text-sm">Contenidos sobre servicios, procesos y consejos útiles.</p>
+          </div>
         <a href="#" class="text-brand-blue font-semibold text-sm hover:underline flex items-center gap-1.5 shrink-0">
           Ver todos los instructivos <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
-      </div>
+        </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <div class="video-card group cursor-pointer">
           <div class="video-thumb relative aspect-video mb-3">
-            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80" alt="Video solicitud constancia" class="w-full h-full object-cover">
+            <img src="assets/images/home/video-instructivo-sgs.png" alt="Video solicitud constancia" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition"></div>
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="w-11 h-11 rounded-full border-2 border-white bg-black/30 group-hover:bg-brand-blue flex items-center justify-center transition shadow-md">
@@ -634,11 +381,11 @@
             </div>
             <span class="absolute bottom-2 right-2 bg-black/75 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">2:45</span>
           </div>
-          <h4 class="font-semibold text-text-dark text-sm leading-snug group-hover:text-brand-blue transition">instructivo Sistema de Gestión de Solicitudes en línea SGS</h4>
+          <h4 class="font-semibold text-text-dark text-sm leading-snug group-hover:text-brand-blue transition">Instructivo Sistema de Gestión de Solicitudes en línea SGS</h4>
         </div>
         <div class="video-card group cursor-pointer">
           <div class="video-thumb relative aspect-video mb-3">
-            <img src="Guia-movilidad-interinstitucional.png" alt="Video bienestar" class="w-full h-full object-cover">
+            <img src="assets/images/home/instructivo-solicitar-movilidad-saliente.png" alt="Video bienestar" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition"></div>
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="w-11 h-11 rounded-full border-2 border-white bg-black/30 group-hover:bg-brand-blue flex items-center justify-center transition shadow-md">
@@ -651,7 +398,7 @@
         </div>
         <div class="video-card group cursor-pointer">
           <div class="video-thumb relative aspect-video mb-3">
-            <img src="Aprende a leer las notificaciones del consejo de la Facultad de Minas.png" alt="Video solicitudes académicas" class="w-full h-full object-cover">
+            <img src="assets/images/home/instructivo-notificaciones-consejo.png" alt="Video notificaciones" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition"></div>
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="w-11 h-11 rounded-full border-2 border-white bg-black/30 group-hover:bg-brand-blue flex items-center justify-center transition shadow-md">
@@ -676,43 +423,33 @@
           <h4 class="font-semibold text-text-dark text-sm leading-snug group-hover:text-brand-blue transition">Conoce la Oficina de Gestión de Asuntos Estudiantiles</h4>
         </div>
       </div>
+      </div>
     </section>
 
   </main>
 
   <script>
   (function () {
-    const track     = document.getElementById('newsTrack');
-    const wrapper   = document.getElementById('newsWrapper');
-    const prevBtn   = document.getElementById('prevBtn');
-    const nextBtn   = document.getElementById('nextBtn');
-    const dotsWrap  = document.getElementById('paginationDots');
-    const GAP       = 20;
-
+    const track    = document.getElementById('newsTrack');
+    const wrapper  = document.getElementById('newsWrapper');
+    const prevBtn  = document.getElementById('prevBtn');
+    const nextBtn  = document.getElementById('nextBtn');
+    const dotsWrap = document.getElementById('paginationDots');
+    const GAP = 20;
     const cards = Array.from(track.children);
     let current = 0;
-
     function visibleCount() {
       const w = window.innerWidth;
       if (w >= 1024) return 4;
       if (w >= 640)  return 2;
       return 1;
     }
-
-    function maxIndex() {
-      return Math.max(0, cards.length - visibleCount());
-    }
-
+    function maxIndex() { return Math.max(0, cards.length - visibleCount()); }
     function sizeCards() {
       const vis = visibleCount();
-      const totalGap = GAP * (vis - 1);
-      const cardW = (wrapper.clientWidth - totalGap) / vis;
-      cards.forEach(c => {
-        c.style.width = cardW + 'px';
-        c.style.minWidth = cardW + 'px';
-      });
+      const cardW = (wrapper.clientWidth - GAP * (vis - 1)) / vis;
+      cards.forEach(c => { c.style.width = cardW + 'px'; c.style.minWidth = cardW + 'px'; });
     }
-
     function move() {
       const cardW = cards[0] ? cards[0].getBoundingClientRect().width : 0;
       track.style.transform = `translateX(-${current * (cardW + GAP)}px)`;
@@ -722,7 +459,6 @@
         d.style.background = i === current ? '#1C4587' : '#D1D5DB';
       });
     }
-
     function buildDots() {
       dotsWrap.innerHTML = '';
       const max = maxIndex();
@@ -736,26 +472,15 @@
         dotsWrap.appendChild(d);
       }
     }
-
     nextBtn.addEventListener('click', () => { if (current < maxIndex()) { current++; move(); } });
     prevBtn.addEventListener('click', () => { if (current > 0)          { current--; move(); } });
-
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        current = Math.min(current, maxIndex());
-        sizeCards();
-        buildDots();
-        move();
-      }, 100);
+      resizeTimer = setTimeout(() => { current = Math.min(current, maxIndex()); sizeCards(); buildDots(); move(); }, 100);
     });
-
-    sizeCards();
-    buildDots();
-    move();
+    sizeCards(); buildDots(); move();
   })();
   </script>
-
 </body>
 </html>
