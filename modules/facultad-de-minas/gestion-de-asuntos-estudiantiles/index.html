@@ -63,6 +63,18 @@
       background: none !important;
     }
 
+    /* Bloquear subrayados globales al pasar el mouse (Herencia de Joomla 6) */
+    #gae-landing a:hover, #gae-landing p:hover, #gae-landing span:hover, 
+    #gae-landing h1:hover, #gae-landing h2:hover, #gae-landing h3:hover, 
+    #gae-landing h4:hover, #gae-landing div:hover, #gae-landing section:hover, #gae-landing button:hover {
+      text-decoration: none !important;
+    }
+
+    /* Permitir subrayado únicamente en los textos explícitamente solicitados */
+    #gae-landing .enlace-subrayado:hover {
+      text-decoration: underline !important;
+    }
+
     /* ── VARIABLES ORIGINALES ── */
     :root {
       --green-900: #002A1E;
@@ -337,8 +349,8 @@
               <h2 class="font-bold text-text-dark mb-1 m-0 p-0" style="font-size: 24px !important; line-height: 32px !important;">Noticias</h2>
               <p class="text-text-mid text-sm m-0 p-0">Información sobre las últimas novedades, eventos y comunicados.</p>
             </div>
-            <a href="#" class="text-brand-blue font-semibold text-sm hover:underline flex items-center gap-1.5 shrink-0">
-              Ver todas las noticias <i class="fa-solid fa-arrow-right text-xs"></i>
+            <a href="#" class="text-brand-blue font-semibold text-sm flex items-center shrink-0 enlace-subrayado">
+              Ver todas las noticias&nbsp;&nbsp;<i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
           </div>
           
@@ -415,8 +427,8 @@
                 <h2 class="font-bold text-text-dark mb-1 m-0 p-0" style="font-size: 24px !important; line-height: 32px !important;">Instructivos</h2>
                 <p class="text-sm text-slate-500 mt-1">Contenidos sobre servicios, procesos y consejos útiles.</p>
               </div>
-              <a href="#" class="text-brand-blue font-semibold flex items-center gap-2 hover:underline text-sm whitespace-nowrap">
-                Ver todos los instructivos 
+              <a href="#" class="text-brand-blue font-semibold flex items-center text-sm whitespace-nowrap enlace-subrayado">
+                Ver todos los instructivos&nbsp;&nbsp; 
                 <i class="fa-solid fa-arrow-right"></i>
               </a>
             </div>
