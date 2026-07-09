@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facultad de Minas – Universidad Nacional de Colombia</title>
     <meta name="description" content="Facultad de Minas, Sede Medellín. Universidad Nacional de Colombia. Programas de pregrado, maestría, doctorado y especialización.">
-    <!-- Tabler Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
     <style>
         /* =============================================================
@@ -25,14 +23,6 @@
             src: url('./assets/fonts/AncizarSans-Italic-VariableFont_wght.ttf') format('truetype');
             font-weight: 100 900;
             font-style: italic;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Ancizar Sans Bold Italic';
-            src: url('./assets/fonts/AncizarSans-BoldItalic.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
             font-display: swap;
         }
 
@@ -320,89 +310,46 @@
             align-items: flex-start;
         }
 
-        .estudia-eyebrow-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
         .estudia-eyebrow {
-            font-family: 'Ancizar Sans Light Italic', sans-serif;
+            font-family: 'Ancizar Sans Bold', sans-serif;
             color: var(--accent-yellow);
             text-transform: uppercase;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
             letter-spacing: 0.05em;
         }
 
-        .estudia-eyebrow-line {
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent-yellow);
-            border-radius: 2px;
-        }
-
         .estudia-title {
-            font-family: 'Ancizar Sans Bold Italic', sans-serif;
+            font-family: 'Ancizar Sans Bold', sans-serif;
             color: var(--text-dark);
             font-size: clamp(2rem, 3vw, 3rem);
             line-height: 1.2;
             margin-bottom: 24px;
         }
 
+        .estudia-separator {
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-yellow);
+            margin-bottom: 24px;
+            border-radius: 2px;
+        }
+
         .estudia-paragraph {
             font-family: 'Ancizar Sans Regular', sans-serif;
             color: var(--text-gray);
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             font-size: 1.1rem;
         }
 
-        /* ── Lista de Íconos ── */
-        .estudia-features-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 35px;
-            width: 100%;
-        }
-
-        .estudia-feature-item {
-            display: flex;
-            align-items: center;
-        }
-
-        .icon-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(247, 173, 20, 0.15); /* Fondo crema sutil basado en el amarillo institucional */
-            border-radius: 8px;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .icon-badge i {
-            font-size: 17px;
-            color: var(--accent-yellow);
-        }
-
-        .estudia-feature-text {
-            font-family: 'Ancizar Sans Regular', sans-serif;
-            color: var(--text-dark);
-            font-size: 1.05rem;
-        }
-
-        /* ── Botón ── */
         .estudia-btn {
-            font-family: 'Ancizar Sans Bold Italic', sans-serif;
+            font-family: 'Ancizar Sans Light Italic', sans-serif;
             background-color: var(--accent-yellow);
             color: var(--btn-text);
             text-decoration: none;
-            padding: 12px 35px;
-            border-radius: 50px;
+            padding: 12px 30px;
+            border-radius: 30px;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             display: inline-block;
@@ -538,39 +485,11 @@
     <section class="estudia-facultad-section">
         <!-- Columna Izquierda (Contenido) -->
         <div class="estudia-content">
-            <div class="estudia-eyebrow-container">
-                <span class="estudia-eyebrow">ESTUDIA EN LA FACULTAD</span>
-                <div class="estudia-eyebrow-line"></div>
-            </div>
-            
+            <span class="estudia-eyebrow">ESTUDIA EN LA FACULTAD</span>
             <h2 class="estudia-title">Descubre tu potencial en nuestra facultad</h2>
-            
+            <div class="estudia-separator"></div>
             <p class="estudia-paragraph">Ofrecemos una amplia gama de posibilidades educativas para potenciar tu desarrollo profesional.</p>
-            
-            <div class="estudia-features-list">
-                <div class="estudia-feature-item">
-                    <div class="icon-badge">
-                        <i class="ti ti-school"></i>
-                    </div>
-                    <span class="estudia-feature-text">36 programas académicos activos</span>
-                </div>
-                
-                <div class="estudia-feature-item">
-                    <div class="icon-badge">
-                        <i class="ti ti-users"></i>
-                    </div>
-                    <span class="estudia-feature-text">Comunidad de 7.000 estudiantes</span>
-                </div>
-                
-                <div class="estudia-feature-item">
-                    <div class="icon-badge">
-                        <i class="ti ti-certificate"></i>
-                    </div>
-                    <span class="estudia-feature-text">Formación desde pregrado hasta doctorado</span>
-                </div>
-            </div>
-            
-            <a href="#" class="estudia-btn">Conoce más</a>
+            <a href="#" class="estudia-btn">Más información</a>
         </div>
 
         <!-- Columna Derecha (Imagen) -->
