@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beneficios para Cursar Estudios de Posgrado | GAE – Facultad de Minas</title>
+  <meta name="description" content="Solicitud de Beneficios para Cursar Estudios de Posgrado ante el Consejo de la Facultad de Minas de la Universidad Nacional de Colombia Sede Medellín.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      important: true,
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              blue:      '#1C4587',
+              blueDark:  '#163570',
+              blueLight: '#2D62B5',
+              yellow:    '#F5B01B',
+              yellowDark:'#D4960E',
+            },
+            page:   '#F7F8FA',
+            card:   '#FFFFFF',
+            border: '#E8ECF0',
+            text: {
+              dark: '#1A1D23',
+              mid:  '#4B5563',
+              soft: '#9CA3AF',
+            },
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── ESCUDO CSS CONTRA LA PLANTILLA DE LA UNAL ── */
+    #gae-landing {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    #gae-landing h1, #gae-landing h2, #gae-landing h3, #gae-landing h4, #gae-landing h5, #gae-landing h6,
+    #gae-landing p, #gae-landing a, #gae-landing span, #gae-landing div, #gae-landing time, #gae-landing button,
+    #gae-landing input, #gae-landing label, #gae-landing li, #gae-landing ol, #gae-landing ul {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    #gae-landing h1::after, #gae-landing h2::after, #gae-landing h3::after, #gae-landing h4::after,
+    #gae-landing h1::before, #gae-landing h2::before, #gae-landing h3::before, #gae-landing h4::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    #gae-landing h1, #gae-landing h2, #gae-landing h3, #gae-landing h4 {
+      border: none !important;
+      background: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* 🛡️ ESCUDO DE TAMAÑO DE TÍTULOS */
+    #gae-landing h1 {
+      font-size: 1.875rem !important;
+      line-height: 2.25rem !important;
+      font-weight: 800 !important;
+    }
+    @media (max-width: 639px) {
+      #gae-landing h1 {
+        font-size: 1.5rem !important;
+        line-height: 2rem !important;
+      }
+    }
+    #gae-landing .section-card-header h2 {
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+      font-weight: 700 !important;
+    }
+    #gae-landing .section-card-body h3 {
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+      font-weight: 700 !important;
+    }
+    #gae-landing .section-card-header p {
+      font-size: 0.75rem !important;
+      line-height: 1rem !important;
+    }
+
+    /* ── 🛡️ ESCUDO DE ESPACIADO ── */
+    #gae-landing p,
+    #gae-landing ul,
+    #gae-landing ol,
+    #gae-landing li {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    #gae-landing .notes-box ul {
+      padding-left: 1.25rem !important;
+      margin: 0 !important;
+    }
+    #gae-landing .notes-box ul li {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    #gae-landing .notes-box ul li + li {
+      margin-top: 0.375rem !important;
+    }
+
+    #gae-landing .section-card-body h3 {
+      margin-bottom: 1rem !important;
+    }
+
+    #gae-landing .section-card-body > p {
+      margin-bottom: 1.25rem !important;
+    }
+
+    #gae-landing .notes-box {
+      margin-top: 1.25rem !important;
+      margin-bottom: 2rem !important;
+    }
+    #gae-landing .notes-box > p:first-child {
+      margin-bottom: 0.5rem !important;
+    }
+
+    #gae-landing .section-card-body > p.mb-4,
+    #gae-landing .section-card-body > p[class*="mb-4"] {
+      margin-bottom: 1rem !important;
+    }
+
+    #gae-landing .section-card-body > div.mb-10,
+    #gae-landing .section-card-body > div[class*="mb-10"] {
+      margin-bottom: 2.5rem !important;
+    }
+    #gae-landing .section-card-body > div.mt-5,
+    #gae-landing .section-card-body > div[class*="mt-5"] {
+      margin-top: 1.25rem !important;
+    }
+
+    #gae-landing .intro-alert {
+      margin-bottom: 2rem !important;
+    }
+
+    #gae-landing nav[aria-label="Breadcrumb"] {
+      margin-bottom: 2rem !important;
+    }
+
+    #gae-landing .mb-8 > .w-14 {
+      margin-top: 1rem !important;
+    }
+
+    #gae-landing .section-card {
+      margin-bottom: 1.25rem !important;
+    }
+
+    #gae-landing .section-card-body hr {
+      margin-top: 0.5rem !important;
+      margin-bottom: 1.5rem !important;
+    }
+
+    #gae-landing .section-card-header p {
+      margin-top: 0.125rem !important;
+    }
+
+    #gae-landing .step-card {
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+    }
+
+    #gae-landing .req-item {
+      padding-top: 0.75rem !important;
+      padding-bottom: 0.75rem !important;
+    }
+
+    #gae-landing .mt-10 {
+      margin-top: 2.5rem !important;
+    }
+
+    /* 3.3 Bloquear subrayados globales */
+    #gae-landing a:hover, #gae-landing p:hover, #gae-landing span:hover,
+    #gae-landing h1:hover, #gae-landing h2:hover, #gae-landing h3:hover,
+    #gae-landing h4:hover, #gae-landing div:hover, #gae-landing section:hover, #gae-landing button:hover {
+      text-decoration: none !important;
+    }
+
+    #gae-landing .enlace-subrayado:hover {
+      text-decoration: underline !important;
+    }
+
+    /* ── 🛡️ ESCUDO NAVBAR ── */
+    #gae-landing .custom-navbar a,
+    #gae-landing .custom-navbar a:link,
+    #gae-landing .custom-navbar a:visited,
+    #gae-landing .custom-navbar a:hover,
+    #gae-landing .custom-navbar a:active,
+    #gae-landing .custom-navbar a:focus {
+      text-decoration: none !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      background-image: none !important;
+    }
+
+    #gae-landing .custom-navbar a::before,
+    #gae-landing .custom-navbar a::after {
+      display: none !important;
+      content: none !important;
+      border: none !important;
+      background: none !important;
+      height: 0 !important;
+      width: 0 !important;
+    }
+
+    #gae-landing .custom-navbar li,
+    #gae-landing .custom-navbar li:hover {
+      list-style: none !important;
+      text-decoration: none !important;
+      border: none !important;
+    }
+
+    /* ── VARIABLES ── */
+    :root {
+      --brand-blue: #1C4587;
+      --brand-yellow: #F5B01B;
+      --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 28px;
+    }
+
+    /* ── NAVBAR ── */
+    .custom-navbar {
+      background-color: #1C4587;
+      height: 55px;
+    }
+
+    .nav-scroll { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb-link {
+      color: var(--brand-blue) !important;
+      text-decoration: none !important;
+      transition: color .2s;
+    }
+    .breadcrumb-link:hover {
+      text-decoration: underline !important;
+    }
+
+    /* ── INTRO ALERT ── */
+    .intro-alert {
+      background: linear-gradient(135deg, #EFF6FF 0%, #F0F4FF 100%);
+      border: 1px solid #DBEAFE;
+      border-left: 4px solid var(--brand-blue);
+      border-radius: var(--r-md);
+      padding: 1rem 1.25rem;
+    }
+
+    /* ── SECTION CARDS ── */
+    .section-card {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: var(--r-lg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+    }
+
+    .section-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid #F3F4F6;
+      cursor: pointer;
+      user-select: none;
+      transition: background .15s;
+    }
+
+    .section-card-header:hover {
+      background: #FAFBFC;
+    }
+
+    .section-card-icon {
+      width: 40px; height: 40px; min-width: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    .section-card-chevron {
+      margin-left: auto;
+      transition: transform .3s ease;
+      color: #9CA3AF;
+      font-size: 0.75rem;
+    }
+
+    .section-card-header[aria-expanded="true"] .section-card-chevron {
+      transform: rotate(180deg);
+    }
+
+    .section-card-body {
+      padding: 1.25rem 1.5rem;
+      overflow: hidden;
+      transition: max-height .4s ease, padding .3s ease;
+    }
+
+    .section-card-body.collapsed {
+      max-height: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* ── STEP CARDS ── */
+    .step-card {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 0;
+    }
+
+    .step-card + .step-card {
+      border-top: 1px solid #F3F4F6;
+    }
+
+    .step-number {
+      width: 32px; height: 32px; min-width: 32px;
+      border-radius: 50%;
+      background: var(--brand-blue);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── REQUIREMENT ITEMS ── */
+    .req-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+    }
+
+    .req-item + .req-item {
+      border-top: 1px solid #F3F4F6;
+    }
+
+    .req-check {
+      width: 24px; height: 24px; min-width: 24px;
+      border-radius: 50%;
+      background: #ECFDF5;
+      color: #059669;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── CTA BUTTONS ── */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--r-md);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none !important;
+      cursor: pointer;
+      transition: all .25s ease;
+      border: none;
+    }
+
+    .cta-primary {
+      background: var(--brand-yellow);
+      color: #fff !important;
+      box-shadow: 0 4px 14px rgba(245,176,27,0.3);
+    }
+    .cta-primary:hover {
+      background: #D4960E;
+      box-shadow: 0 6px 20px rgba(245,176,27,0.4);
+      transform: translateY(-2px);
+    }
+
+    .cta-secondary {
+      background: #fff;
+      color: var(--brand-blue) !important;
+      border: 1.5px solid #E5E7EB !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .cta-secondary:hover {
+      border-color: var(--brand-blue) !important;
+      box-shadow: 0 4px 14px rgba(28,69,135,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* ── NOTES BOX ── */
+    .notes-box {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: var(--r-md);
+      padding: 1rem 1.25rem;
+    }
+
+    /* ── NORMATIVA LINK ── */
+    .normativa-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--r-md);
+      background: #F9FAFB;
+      border: 1px solid #E5E7EB;
+      text-decoration: none !important;
+      color: #1A1D23 !important;
+      transition: all .25s ease;
+    }
+
+    .normativa-link:hover {
+      border-color: #D1D5DB;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transform: translateY(-2px);
+    }
+
+    .normativa-link-icon {
+      width: 36px; height: 36px; min-width: 36px;
+      border-radius: 8px;
+      background: #EFF6FF;
+      color: var(--brand-blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* ── INLINE LINK ── */
+    .inline-link {
+      color: var(--brand-blue) !important;
+      font-weight: 600;
+      text-decoration: none !important;
+      transition: color .2s;
+    }
+    .inline-link:hover {
+      text-decoration: underline !important;
+    }
+
+    /* ── FAB (Floating Action Button) ── */
+    .fab-asesoria {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      height: 56px;
+      max-width: 56px;
+      padding: 0 16px;
+      border-radius: 9999px;
+      background: var(--brand-yellow);
+      color: #fff !important;
+      text-decoration: none !important;
+      box-shadow: 0 6px 20px rgba(245, 176, 27, 0.4);
+      overflow: hidden;
+      cursor: pointer;
+      transition: max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.25s ease,
+                  gap 0.3s ease;
+    }
+
+    .fab-asesoria:hover {
+      max-width: 280px;
+      gap: 10px;
+      box-shadow: 0 8px 28px rgba(245, 176, 27, 0.55);
+    }
+
+    .fab-asesoria svg {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+
+    .fab-asesoria-label {
+      white-space: nowrap;
+      font-family: 'Ancizar Sans', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: #fff;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: opacity 0.25s ease 0.1s,
+                  max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fab-asesoria:hover .fab-asesoria-label {
+      opacity: 1;
+      max-width: 200px;
+    }
+
+    /* ── VIDEO CONTAINER ── */
+    .video-container:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12) !important;
+      transform: translateY(-2px);
+    }
+
+    /* ── REVEAL AL CARGAR ── */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform .6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased text-text-dark bg-page">
+
+  <div id="gae-landing">
+
+    <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+    <nav class="custom-navbar text-white shadow-md relative z-20 flex items-center">
+      <div class="w-full flex justify-center items-center h-full">
+        <ul class="nav-scroll flex items-center justify-center gap-0 text-sm font-medium whitespace-nowrap overflow-x-auto h-full px-4">
+          <li><a href="http://new-minas.medellin.unal.edu.co/index.php/asuntos-estudiantiles-home" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Inicio</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Acerca de la oficina</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Gestión de calidad</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Gestión de la información</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Flujo de atención</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════ MAIN ═══════════════════════ -->
+    <main>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- ── BREADCRUMB ── -->
+        <nav class="flex items-center gap-1.5 text-sm text-text-soft mb-8 flex-wrap reveal-on-scroll" aria-label="Breadcrumb">
+          <a href="http://new-minas.medellin.unal.edu.co/index.php/asuntos-estudiantiles-home" class="breadcrumb-link">Inicio</a>
+          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          <a href="http://new-minas.medellin.unal.edu.co/index.php/gae-solicitudes-estudiantiles" class="breadcrumb-link">Solicitudes Estudiantiles</a>
+          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          <span class="text-text-dark font-medium">Beneficios para Cursar Estudios de Posgrado</span>
+        </nav>
+
+        <!-- ── PAGE HEADER ── -->
+        <div class="mb-8 reveal-on-scroll">
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-text-dark m-0 p-0 leading-tight" style="font-size: 1.875rem !important; line-height: 2.25rem !important; font-weight: 800 !important;">Solicitud de Beneficios para Cursar Estudios de Posgrado</h1>
+          <div class="w-14 h-1.5 bg-brand-yellow mt-4 rounded-full"></div>
+        </div>
+
+        <!-- ── INTRO ALERT ── -->
+        <div class="intro-alert mb-8 reveal-on-scroll">
+          <div class="flex gap-3 items-start">
+            <i class="fa-solid fa-circle-info text-brand-blue text-lg mt-0.5 flex-shrink-0"></i>
+            <p class="text-sm text-text-mid leading-relaxed m-0">
+              Lea atentamente todo el artículo antes de realizar su solicitud. En caso de duda,
+              <a href="http://new-minas.medellin.unal.edu.co/index.php/gae-asesoria-y-contacto" class="inline-link">contacte al asesor estudiantil</a>
+              de la Facultad de Minas. Verifique el
+              <a href="/tramitesestudiantiles/calendarios/calendario-academico-sede-medellin.html" class="inline-link">Calendario Académico y de Solicitudes</a>
+              y, en caso que la solicitud tenga fechas definidas, realice su solicitud de manera oportuna.
+            </p>
+          </div>
+        </div>
+
+        <!-- ═══════════════ FECHAS ═══════════════ -->
+        <div class="section-card mb-5 reveal-on-scroll" id="sec-fechas">
+          <div class="section-card-header" aria-expanded="false" onclick="toggleSection('sec-fechas')">
+            <div class="section-card-icon bg-sky-50 text-sky-700">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-text-dark m-0 p-0" style="font-size: 1rem !important; line-height: 1.5rem !important; font-weight: 700 !important;">Fechas</h2>
+              <p class="text-xs text-text-soft m-0 mt-0.5">Periodo habilitado para la solicitud</p>
+            </div>
+            <i class="fa-solid fa-chevron-down section-card-chevron"></i>
+          </div>
+          <div class="section-card-body collapsed">
+            <div class="req-item">
+              <div class="req-check"><i class="fa-solid fa-check"></i></div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">Las fechas habilitadas para realizar la solicitud serán las comprendidas entre la expedición de los resultados del proceso de admisión de posgrado y hasta dos semanas después de la publicación de los mismos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════ NORMATIVA ═══════════════ -->
+        <div class="section-card mb-5 reveal-on-scroll" id="sec-normativa">
+          <div class="section-card-header" aria-expanded="false" onclick="toggleSection('sec-normativa')">
+            <div class="section-card-icon bg-purple-50 text-purple-700">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-text-dark m-0 p-0" style="font-size: 1rem !important; line-height: 1.5rem !important; font-weight: 700 !important;">Normativa</h2>
+              <p class="text-xs text-text-soft m-0 mt-0.5">Marco reglamentario aplicable</p>
+            </div>
+            <i class="fa-solid fa-chevron-down section-card-chevron"></i>
+          </div>
+          <div class="section-card-body collapsed">
+            <div class="space-y-3">
+              <a href="https://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=36926" target="_blank" rel="noopener noreferrer" class="normativa-link">
+                <div class="normativa-link-icon">
+                  <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-text-dark m-0">Resolución 121 de 2010 – Rectoría</p>
+                  <p class="text-xs text-text-soft m-0 mt-1">Abrir en el Sistema de Normatividad</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-text-soft text-xs ml-auto flex-shrink-0"></i>
+              </a>
+              <a href="https://legal.unal.edu.co/rlunal/home/doc.jsp?d_i=112565" target="_blank" rel="noopener noreferrer" class="normativa-link">
+                <div class="normativa-link-icon">
+                  <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-text-dark m-0">Acuerdo 0005 de 2025 – CF Minas</p>
+                  <p class="text-xs text-text-soft m-0 mt-1">Abrir en el Sistema de Normatividad</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-text-soft text-xs ml-auto flex-shrink-0"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════ REQUISITOS ESPECÍFICOS ═══════════════ -->
+        <div class="section-card mb-5 reveal-on-scroll" id="sec-requisitos">
+          <div class="section-card-header" aria-expanded="false" onclick="toggleSection('sec-requisitos')">
+            <div class="section-card-icon bg-green-50 text-green-700">
+              <i class="fa-solid fa-clipboard-check"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-text-dark m-0 p-0" style="font-size: 1rem !important; line-height: 1.5rem !important; font-weight: 700 !important;">Requisitos Específicos</h2>
+              <p class="text-xs text-text-soft m-0 mt-0.5">Documentos y condiciones previas</p>
+            </div>
+            <i class="fa-solid fa-chevron-down section-card-chevron"></i>
+          </div>
+          <div class="section-card-body collapsed">
+            <div class="req-item">
+              <div class="req-check"><i class="fa-solid fa-check"></i></div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">Escribir en los comentarios de la solicitud las razones por las cuales realiza la solicitud. Podrá adjuntar también los demás soportes que considere necesarios en un solo archivo PDF.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════ MEDIOS PARA REALIZAR LA SOLICITUD ═══════════════ -->
+        <div class="section-card mb-5 reveal-on-scroll" id="sec-medios">
+          <div class="section-card-header" aria-expanded="false" onclick="toggleSection('sec-medios')">
+            <div class="section-card-icon bg-blue-50 text-brand-blue">
+              <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-text-dark m-0 p-0" style="font-size: 1rem !important; line-height: 1.5rem !important; font-weight: 700 !important;">Medios para realizar su solicitud</h2>
+              <p class="text-xs text-text-soft m-0 mt-0.5">Canales disponibles para tramitar</p>
+            </div>
+            <i class="fa-solid fa-chevron-down section-card-chevron"></i>
+          </div>
+          <div class="section-card-body collapsed">
+
+            <!-- SGS -->
+            <h3 class="text-sm font-bold text-text-dark m-0 p-0 mb-4 flex items-center gap-2" style="font-size: 0.875rem !important; line-height: 1.25rem !important; font-weight: 700 !important;">
+              <span class="w-2 h-2 rounded-full bg-brand-yellow"></span>
+              Sistema de Gestión de Solicitudes (SGS)
+            </h3>
+
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">Realice la solicitud por medio del botón que encuentra al finalizar esta sección. Lea las ayudas en cada ventana flotante que aparece al pasar el cursor por los campos del formulario.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">Verifique que toda la información ingresada sea correcta, especialmente las direcciones de correo electrónico digitadas en el formulario. Al finalizar y enviar la solicitud, el sistema enviará automáticamente un correo a cada uno de los involucrados para que la confirmen o la cancelen.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">Verifique que todas las personas encargadas de confirmar la solicitud a través del mensaje enviado por correo electrónico revisen que los datos sean correctos y que confirmen la solicitud por medio del respectivo enlace que se encuentra en dicho mensaje. En caso de que la información sea incorrecta, cancele la solicitud y realice una nueva.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">
+                Posterior a la confirmación de la solicitud, será enviado un mensaje en los dos (2) días hábiles siguientes, allí se validará la recepción de la solicitud y se informará la posible fecha de atención. Si no recibe este mensaje por favor escriba a
+                <a href="mailto:asesorestu_med@unal.edu.co" class="inline-link">asesorestu_med@unal.edu.co</a>.
+              </p>
+            </div>
+
+            <!-- Notas SGS -->
+            <div class="notes-box mt-5 mb-8">
+              <p class="text-sm font-bold text-yellow-800 m-0 mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation text-yellow-600"></i> Notas importantes
+              </p>
+              <ul class="text-sm text-yellow-900/80 m-0 pl-5 space-y-1.5" style="list-style: disc;">
+                <li>Si alguna de las personas que deben confirmar la solicitud no lo hace o la cancela, la solicitud no podrá ser tramitada.</li>
+                <li>Se considera como fecha y hora en que se hizo la solicitud el momento en que la última persona, entre las que deban confirmarla, realice la confirmación, independientemente del orden de las confirmaciones previas.</li>
+                <li>Es responsabilidad del solicitante asegurarse de que todas las personas que deban confirmar la solicitud mediante el mensaje de correo electrónico que la contiene hayan recibido dicho correo y lo confirmen.</li>
+              </ul>
+            </div>
+
+            <p class="text-sm text-text-mid m-0 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-circle-info text-brand-blue text-xs"></i>
+              <span><strong>Para esta solicitud:</strong> Se enviará mensaje de correo electrónico al solicitante para que confirme la solicitud.</span>
+            </p>
+
+            <!-- CTA: SGS -->
+            <div class="flex flex-col sm:flex-row gap-3 mb-10">
+              <a href="https://uasminas.medellin.unal.edu.co/solicitud/solicitudes/partials/creditosexcedentes/creditosexcedentes.html"
+                 target="_blank" rel="noopener noreferrer"
+                 class="cta-btn cta-primary">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                Beneficios para cursar estudios de Posgrado — SGS
+              </a>
+            </div>
+
+            <!-- SEPARADOR -->
+            <hr class="border-border my-2 mb-6">
+
+            <!-- Formato Sugerido -->
+            <h3 class="text-sm font-bold text-text-dark m-0 p-0 mb-4 flex items-center gap-2" style="font-size: 0.875rem !important; line-height: 1.25rem !important; font-weight: 700 !important;">
+              <span class="w-2 h-2 rounded-full bg-brand-yellow"></span>
+              Formato Sugerido
+            </h3>
+
+            <p class="text-sm text-text-mid m-0 mb-5 leading-relaxed">
+              Realice la solicitud mediante el formato sugerido <strong>únicamente</strong> si se le ha indicado hacerlo o si existe un problema con el Sistema de Solicitudes Estudiantiles en línea (SGS) y se le instruye a usar dicho formato.
+            </p>
+
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">Descargue el <strong>formato sugerido</strong> por medio del botón que encuentra al finalizar este listado.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">
+                Diligencie el formato. Revise el instructivo ubicado en la hoja siguiente del formato. No modifique la estructura del documento, cualquier novedad infórmela a
+                <a href="mailto:asesorestu_med@unal.edu.co" class="inline-link">asesorestu_med@unal.edu.co</a>.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">
+                Envíe el formulario desde su correo institucional (@unal.edu.co) a la cuenta
+                <a href="mailto:asesorestu_med@unal.edu.co" class="inline-link">asesorestu_med@unal.edu.co</a>.
+                Las solicitudes recibidas a partir de las 17:00 horas se registrarán para el día hábil siguiente.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">
+                Posterior a la recepción de la solicitud, será enviado un mensaje en los dos (2) días hábiles siguientes a la cuenta de correo digitada en la solicitud, allí se validará la recepción de la solicitud y se informará la posible fecha de atención. Si no recibe este mensaje por favor escriba a
+                <a href="mailto:asesorestu_med@unal.edu.co" class="inline-link">asesorestu_med@unal.edu.co</a>.
+              </p>
+            </div>
+
+            <!-- CTA: Formato Sugerido -->
+            <div class="flex flex-col sm:flex-row gap-3 mt-5">
+              <a href="https://drive.google.com/drive/folders/1aIOlkmqg6K6MmZxnmK1WMUBJpfzIMN3L"
+                 target="_blank" rel="noopener noreferrer"
+                 class="cta-btn cta-secondary">
+                <i class="fa-solid fa-file-arrow-down"></i>
+                Beneficios para cursar estudios de Posgrado — Formato Sugerido
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════════════ NOTIFICACIÓN ═══════════════ -->
+        <div class="section-card mb-5 reveal-on-scroll" id="sec-notificacion">
+          <div class="section-card-header" aria-expanded="false" onclick="toggleSection('sec-notificacion')">
+            <div class="section-card-icon bg-amber-50 text-amber-700">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-text-dark m-0 p-0" style="font-size: 1rem !important; line-height: 1.5rem !important; font-weight: 700 !important;">Notificación</h2>
+              <p class="text-xs text-text-soft m-0 mt-0.5">Cómo y cuándo recibirá respuesta</p>
+            </div>
+            <i class="fa-solid fa-chevron-down section-card-chevron"></i>
+          </div>
+          <div class="section-card-body collapsed">
+            <div class="flex gap-3 items-start">
+              <div class="w-10 h-10 min-w-[40px] rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-envelope text-amber-600"></i>
+              </div>
+              <p class="text-sm text-text-mid m-0 leading-relaxed">
+                La respuesta será enviada por correo electrónico a la cuenta institucional del solicitante, (máximo) en los <strong>15 días calendario</strong> siguientes a la sesión del
+                <a href="/tramitesestudiantiles/calendarios/calendario-detallado-consejo-facultad-de-minas.html" class="inline-link">Consejo de Facultad</a>
+                que atienda la solicitud.
+              </p>
+            </div>
+
+            <!-- Video informativo -->
+            <div style="margin-left: 52px;">
+              <br>
+              <p class="text-sm text-text-mid m-0 mt-5 mb-3 leading-relaxed">
+                En el siguiente video se brinda más información sobre las notificaciones.
+              </p>
+              <br>
+              <div class="video-container" style="position: relative; width: 75%; padding-bottom: 42.1875%; border-radius: var(--r-md); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: box-shadow .3s ease, transform .3s ease; cursor: pointer; margin: 0 auto;">
+                <iframe
+                  src="https://drive.google.com/file/d/11nBgiwQJJ0gXDRN-Zz2HmRSdRq-lSUhN/preview"
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen
+                  loading="lazy">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── BACK LINK ── -->
+        <div class="mt-10 mb-4">
+          <a href="http://new-minas.medellin.unal.edu.co/index.php/gae-solicitudes-estudiantiles" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue hover:underline transition">
+            <i class="fa-solid fa-arrow-left text-xs"></i>
+            Volver a Solicitudes Estudiantiles
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
+  <script>
+  function toggleSection(sectionId) {
+    const card = document.getElementById(sectionId);
+    const header = card.querySelector('.section-card-header');
+    const body = card.querySelector('.section-card-body');
+    const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+    if (isExpanded) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        body.classList.add('collapsed');
+        body.style.maxHeight = '0';
+      });
+      header.setAttribute('aria-expanded', 'false');
+    } else {
+      body.classList.remove('collapsed');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.addEventListener('transitionend', function handler() {
+        body.style.maxHeight = 'none';
+        body.removeEventListener('transitionend', handler);
+      });
+      header.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  // Initialize all sections as collapsed
+  document.querySelectorAll('.section-card-body').forEach(body => {
+    body.style.maxHeight = '0';
+  });
+
+  // ── REVEAL AL CARGAR (efecto cascada) ──
+  document.querySelectorAll('.reveal-on-scroll').forEach((el, i) => {
+    setTimeout(() => el.classList.add('revealed'), i * 100);
+  });
+  </script>
+
+  <!-- ═══════════════════════ FAB ASESORÍA ═══════════════════════ -->
+  <a href="http://new-minas.medellin.unal.edu.co/index.php/gae-asesoria-y-contacto"
+     class="fab-asesoria"
+     aria-label="Solicite asesoría estudiantil">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      <circle cx="12" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+      <circle cx="8.5" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+      <circle cx="15.5" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+    </svg>
+    <span class="fab-asesoria-label">Solicite asesoría</span>
+  </a>
+
+</body>
+</html>
