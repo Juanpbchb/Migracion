@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asesoría, Contacto y Ubicación – GAE | Facultad de Minas</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      important: true, /* 🛡️ Fuerza !important en Tailwind */
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              blue:       '#1C4587',
+              blueDark:   '#163570',
+              blueLight:  '#2D62B5',
+              yellow:     '#F5B01B',
+              yellowDark: '#D4960E',
+            },
+            page:   '#F7F8FA',
+            card:   '#FFFFFF',
+            border: '#E8ECF0',
+            text: {
+              dark: '#1A1D23',
+              mid:  '#4B5563',
+              soft: '#9CA3AF',
+            },
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* ── ESCUDO CSS CONTRA LA PLANTILLA DE LA UNAL ── */
+    #gae-contacto {
+      font-family: 'Inter', sans-serif !important;
+    }
+    
+    /* 🛠️ CORRECCIÓN: Se quitó "#gae-contacto i" para que FontAwesome pueda funcionar */
+    #gae-contacto h1, #gae-contacto h2, #gae-contacto h3, #gae-contacto h4, #gae-contacto h5, #gae-contacto h6,
+    #gae-contacto p, #gae-contacto a, #gae-contacto span, #gae-contacto div, #gae-contacto time, #gae-contacto button {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    /* Eliminar pseudo-elementos (líneas) y fondos que la plantilla de Joomla inyecta en los títulos */
+    #gae-contacto h1::after, #gae-contacto h2::after, #gae-contacto h3::after, #gae-contacto h4::after,
+    #gae-contacto h1::before, #gae-contacto h2::before, #gae-contacto h3::before, #gae-contacto h4::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    #gae-contacto h1, #gae-contacto h2, #gae-contacto h3, #gae-contacto h4 {
+      border: none !important;
+      background: none !important;
+    }
+
+    /* Bloquear subrayados globales al pasar el mouse (Herencia de Joomla 6) */
+    #gae-contacto a:hover, #gae-contacto p:hover, #gae-contacto span:hover, 
+    #gae-contacto h1:hover, #gae-contacto h2:hover, #gae-contacto h3:hover, 
+    #gae-contacto h4:hover, #gae-contacto div:hover, #gae-contacto section:hover, #gae-contacto button:hover {
+      text-decoration: none !important;
+    }
+
+    /* Permitir subrayado únicamente en los textos explícitamente solicitados */
+    #gae-contacto .enlace-subrayado:hover {
+      text-decoration: underline !important;
+    }
+
+    /* ── 🛡️ ESCUDO NAVBAR: Protección contra subrayados de Joomla en el menú ── */
+    #gae-contacto .custom-navbar a,
+    #gae-contacto .custom-navbar a:link,
+    #gae-contacto .custom-navbar a:visited,
+    #gae-contacto .custom-navbar a:hover,
+    #gae-contacto .custom-navbar a:active,
+    #gae-contacto .custom-navbar a:focus {
+      text-decoration: none !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      background-image: none !important;
+    }
+
+    /* Bloquear pseudo-elementos que Joomla pueda inyectar como subrayados en los links del navbar */
+    #gae-contacto .custom-navbar a::before,
+    #gae-contacto .custom-navbar a::after {
+      display: none !important;
+      content: none !important;
+      border: none !important;
+      background: none !important;
+      height: 0 !important;
+      width: 0 !important;
+    }
+
+    /* Proteger los <li> del navbar contra herencias de estilo */
+    #gae-contacto .custom-navbar li,
+    #gae-contacto .custom-navbar li:hover {
+      list-style: none !important;
+      text-decoration: none !important;
+      border: none !important;
+    }
+
+    /* ── VARIABLES ORIGINALES ── */
+    :root {
+      --green-800: #004D37;
+      --green-600: #1A7A5E;
+      --green-100: #E3F2ED;
+      --gold:      #F5B01B;
+      --gold-dark: #D4960E;
+      --page-bg:   #F7F8FA;
+      --card-bg:   #FFFFFF;
+      --border:    #E8ECF0;
+      --text-900:  #1A1D23;
+      --text-600:  #4B5563;
+      --text-400:  #9CA3AF;
+      --r-md: 12px; --r-lg: 20px;
+    }
+
+    /* ── NAVBAR ── */
+    .custom-navbar { background-color: #1C4587; height: 55px; }
+    .nav-scroll { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb-link { color: var(--gold); text-decoration: none; transition: opacity .15s; }
+    .breadcrumb-link:hover { opacity: .75; }
+
+    /* ── CONTACT CARDS ── */
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .contact-card:hover {
+      box-shadow: 0 8px 28px rgba(28,69,135,.10);
+      transform: translateY(-2px);
+    }
+    .contact-icon {
+      width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    /* ── MAP ── */
+    .map-wrapper {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(28,69,135,.10);
+    }
+    .map-wrapper iframe { display: block; width: 100%; height: 380px; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: linear-gradient(135deg, #EBF3FE 0%, #dbeafe 100%);
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid #1C4587;
+      border-radius: var(--r-md);
+      padding: 1.25rem 1.5rem;
+    }
+
+    /* ── QUICK LINKS ── */
+    .quick-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--gold-dark); font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; transition: color .2s, gap .2s;
+    }
+    .quick-link:hover { color: #1C4587; gap: 0.75rem; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--green-600); background: var(--green-100);
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 0.75rem;
+    }
+
+    /* ── DIVIDER ── */
+    .gold-divider {
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      border-radius: 2px; border: none; margin: 0.75rem 0 0;
+    }
+    
+    /* ── ANIMATIONS (NUEVO) ── */
+    @keyframes dropIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-drop-in {
+      animation: dropIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0; /* Empieza oculto para que la animación lo muestre gradualmente */
+    }
+    
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    .delay-500 { animation-delay: 500ms; }
+
+  </style>
+</head>
+<body class="font-sans antialiased bg-page text-text-dark">
+
+  <div id="gae-contacto">
+
+    <nav class="custom-navbar text-white shadow-md flex items-center">
+      <div class="w-full flex justify-center items-center h-full">
+        <ul class="nav-scroll flex items-center justify-center gap-0 text-sm font-medium whitespace-nowrap overflow-x-auto h-full px-4">
+          <li><a href="http://new-minas.medellin.unal.edu.co/index.php/asuntos-estudiantiles-home" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Inicio</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Acerca de la oficina</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Gestión de calidad</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Gestión de la información</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Flujo de atención</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-20">
+
+      <!-- ── BREADCRUMB ── -->
+      <nav class="flex items-center gap-1.5 text-sm text-text-soft mb-8 flex-wrap animate-drop-in" aria-label="Breadcrumb">
+        <a href="http://new-minas.medellin.unal.edu.co/index.php/asuntos-estudiantiles-home" class="breadcrumb-link !text-brand-blue hover:underline">Inicio</a>
+        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        <span class="text-text-dark font-medium">Asesoría y Contacto</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+
+        <div class="lg:col-span-2 flex flex-col gap-6">
+
+          <div class="animate-drop-in delay-100">
+            <h2 class="text-text-dark leading-tight mt-1 m-0 p-0" style="font-size: 28px !important; line-height: 36px !important; font-weight: 700 !important;">
+              Ponte en contacto<br>con nosotros
+            </h2>
+            <hr class="gold-divider">
+          </div>
+
+          <div class="contact-card animate-drop-in delay-200">
+            <div class="contact-icon bg-blue-50 text-brand-blue">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-text-soft mb-1 m-0 p-0" style="font-size: 12px !important; font-weight: 600 !important;">
+                Correo electrónico / Email
+              </p>
+              <span class="text-brand-blue font-bold text-sm" style="font-size: 14px !important; color: #1C4587 !important; font-weight: 700 !important; display: inline-block !important;">
+                asesorestu_med<span style="display: inline !important;">@</span>unal.edu.co
+              </span>
+              <p class="text-text-mid text-xs mt-1 italic m-0 p-0">
+                Feel free to write in English if you need to.
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-card animate-drop-in delay-300">
+            <div class="contact-icon bg-green-50 text-green-700">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-text-soft mb-1 m-0 p-0" style="font-size: 12px !important; font-weight: 600 !important;">
+                Teléfono / Phone number
+              </p>
+              <a href="tel:+576044255083"
+                 class="text-text-dark font-semibold text-sm hover:text-brand-blue transition">
+                (+57) 604 425 50 83
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card animate-drop-in delay-400">
+            <div class="contact-icon bg-yellow-50 text-brand-yellowDark">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-text-soft mb-1 m-0 p-0" style="font-size: 12px !important; font-weight: 600 !important;">
+                Ubicación / Location
+              </p>
+              <p class="text-text-dark font-medium text-sm leading-relaxed m-0 p-0">
+                Carrera 80 No 65-223 · Bloque M4<br>
+                Primer Piso · Oficina GAE
+              </p>
+              <p class="text-text-mid text-xs mt-1 m-0 p-0">
+                Medellín · Antioquia · Colombia
+              </p>
+            </div>
+          </div>
+
+          <div class="highlight-box animate-drop-in delay-500">
+            <div class="flex gap-3 items-start">
+              <div class="text-brand-blue text-lg mt-0.5 flex-shrink-0">
+                <i class="fa-solid fa-video"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-brand-blue mb-1 m-0 p-0" style="font-size: 14px !important; font-weight: 600 !important;">Charlas virtuales</p>
+                <p class="text-text-mid text-sm leading-relaxed m-0 p-0" style="font-size: 14px !important;">
+                  Recuerda que también puedes recibir información asistiendo a las charlas virtuales.
+                  <a href="#" class="text-brand-blue font-bold hover:underline">¡Conéctate!</a>
+                  con el asesor estudiantil de la Facultad de Minas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="lg:col-span-3 flex flex-col gap-6">
+
+          <div class="animate-drop-in delay-200">
+            <h2 class="text-text-dark leading-tight mt-1 m-0 p-0" style="font-size: 28px !important; line-height: 36px !important; font-weight: 700 !important;">
+              Encuéntranos en el campus
+            </h2>
+            <hr class="gold-divider">
+          </div>
+
+          <div class="map-wrapper animate-drop-in delay-300">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1123.8596414766357!2d-75.59224484393465!3d6.2751395828113345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTYnMzAuNSJOIDc1wrAzNScyOS43Ilc!5e1!3m2!1sen!2sco!4v1453239526667" width="600" height="450" style="border: 0px; display: block; margin-left: auto; margin-right: auto;" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+          </div>
+
+          <div class="bg-white border border-border rounded-xl p-5 flex items-start gap-4 animate-drop-in delay-400">
+            <div class="w-10 h-10 rounded-full bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0 text-lg">
+              <i class="fa-solid fa-map-pin"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-text-dark text-sm m-0 p-0" style="font-size: 14px !important; font-weight: 600 !important;">Oficina Gestión Asuntos Estudiantiles GAE</p>
+              <p class="text-text-mid text-sm mt-0.5 m-0 p-0" style="font-size: 14px !important;">Carrera 80 No 65-223 · Bloque M4 · Primer Piso</p>
+              <p class="text-text-soft text-xs mt-0.5 m-0 p-0">Medellín, Antioquia, Colombia</p>
+              <a
+                href="https://maps.google.com/?q=Facultad+de+Minas+Universidad+Nacional+Medellin"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 mt-3 text-brand-blue text-xs font-semibold hover:underline"
+              >
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                Abrir en Google Maps
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+  </div> </body>
+</html>

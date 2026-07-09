@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario Consejo Facultad de Minas | GAE – Facultad de Minas</title>
+  <meta name="description" content="Consulte las fechas de recepción de solicitudes, sesiones de la Comisión Delegataria y el Consejo de Facultad de Minas de la Universidad Nacional de Colombia Sede Medellín.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      important: true,
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              blue:      '#1C4587',
+              blueDark:  '#163570',
+              blueLight: '#2D62B5',
+              yellow:    '#F5B01B',
+              yellowDark:'#D4960E',
+            },
+            page:   '#FFFFFF',
+            card:   '#FFFFFF',
+            border: '#E8ECF0',
+            text: {
+              dark: '#1A1D23',
+              mid:  '#4B5563',
+              soft: '#9CA3AF',
+            },
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── ESCUDO CSS CONTRA LA PLANTILLA DE LA UNAL ── */
+    #gae-landing {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    #gae-landing h1, #gae-landing h2, #gae-landing h3, #gae-landing h4, #gae-landing h5, #gae-landing h6,
+    #gae-landing p, #gae-landing a, #gae-landing span, #gae-landing div, #gae-landing time, #gae-landing button,
+    #gae-landing input, #gae-landing label, #gae-landing li, #gae-landing ol, #gae-landing ul {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    #gae-landing h1::after, #gae-landing h2::after, #gae-landing h3::after, #gae-landing h4::after,
+    #gae-landing h1::before, #gae-landing h2::before, #gae-landing h3::before, #gae-landing h4::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    #gae-landing h1, #gae-landing h2, #gae-landing h3, #gae-landing h4 {
+      border: none !important;
+      background: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* 🛡️ ESCUDO DE TAMAÑO DE TÍTULOS */
+    #gae-landing h1 {
+      font-size: 1.875rem !important;
+      line-height: 2.25rem !important;
+      font-weight: 800 !important;
+    }
+    @media (max-width: 639px) {
+      #gae-landing h1 {
+        font-size: 1.5rem !important;
+        line-height: 2rem !important;
+      }
+    }
+
+    /* ── 🛡️ ESCUDO DE ESPACIADO ── */
+    #gae-landing p,
+    #gae-landing ul,
+    #gae-landing ol,
+    #gae-landing li {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    #gae-landing nav[aria-label="Breadcrumb"] {
+      margin-bottom: 2rem !important;
+    }
+
+    #gae-landing .mt-10 {
+      margin-top: 2.5rem !important;
+    }
+
+    /* 3.3 Bloquear subrayados globales */
+    #gae-landing a:hover, #gae-landing p:hover, #gae-landing span:hover,
+    #gae-landing h1:hover, #gae-landing h2:hover, #gae-landing h3:hover,
+    #gae-landing h4:hover, #gae-landing div:hover, #gae-landing section:hover, #gae-landing button:hover {
+      text-decoration: none !important;
+    }
+
+    #gae-landing .enlace-subrayado:hover {
+      text-decoration: underline !important;
+    }
+
+    /* ── 🛡️ ESCUDO NAVBAR ── */
+    #gae-landing .custom-navbar a,
+    #gae-landing .custom-navbar a:link,
+    #gae-landing .custom-navbar a:visited,
+    #gae-landing .custom-navbar a:hover,
+    #gae-landing .custom-navbar a:active,
+    #gae-landing .custom-navbar a:focus {
+      text-decoration: none !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      background-image: none !important;
+    }
+
+    #gae-landing .custom-navbar a::before,
+    #gae-landing .custom-navbar a::after {
+      display: none !important;
+      content: none !important;
+      border: none !important;
+      background: none !important;
+      height: 0 !important;
+      width: 0 !important;
+    }
+
+    #gae-landing .custom-navbar li,
+    #gae-landing .custom-navbar li:hover {
+      list-style: none !important;
+      text-decoration: none !important;
+      border: none !important;
+    }
+
+    /* ── VARIABLES ── */
+    :root {
+      --brand-blue: #1C4587;
+      --brand-yellow: #F5B01B;
+      --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 28px;
+    }
+
+    /* ── NAVBAR ── */
+    .custom-navbar {
+      background-color: #1C4587;
+      height: 55px;
+    }
+
+    .nav-scroll { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb-link {
+      color: var(--brand-blue) !important;
+      text-decoration: none !important;
+      transition: color .2s;
+    }
+    .breadcrumb-link:hover {
+      text-decoration: underline !important;
+    }
+
+    /* ── INLINE LINK ── */
+    .inline-link {
+      color: var(--brand-blue) !important;
+      font-weight: 600;
+      text-decoration: none !important;
+      transition: color .2s;
+    }
+    .inline-link:hover {
+      text-decoration: underline !important;
+    }
+
+    /* ── FAB (Floating Action Button) ── */
+    .fab-asesoria {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      height: 56px;
+      max-width: 56px;
+      padding: 0 16px;
+      border-radius: 9999px;
+      background: var(--brand-yellow);
+      color: #fff !important;
+      text-decoration: none !important;
+      box-shadow: 0 6px 20px rgba(245, 176, 27, 0.4);
+      overflow: hidden;
+      cursor: pointer;
+      transition: max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.25s ease,
+                  gap 0.3s ease;
+    }
+
+    .fab-asesoria:hover {
+      max-width: 280px;
+      gap: 10px;
+      box-shadow: 0 8px 28px rgba(245, 176, 27, 0.55);
+    }
+
+    .fab-asesoria svg {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+
+    .fab-asesoria-label {
+      white-space: nowrap;
+      font-family: 'Ancizar Sans', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: #fff;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: opacity 0.25s ease 0.1s,
+                  max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fab-asesoria:hover .fab-asesoria-label {
+      opacity: 1;
+      max-width: 200px;
+    }
+
+    /* ── REVEAL AL CARGAR ── */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform .6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MINIMAL ACCORDIONS (NEW CLEAN DESIGN) ── */
+    .minimal-accordion {
+      border-bottom: 1px solid #E5E7EB;
+      margin-bottom: 1rem;
+    }
+    .minimal-accordion:first-child {
+      border-top: 1px solid #E5E7EB;
+    }
+    .minimal-accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      background: transparent;
+      user-select: none;
+    }
+    .minimal-accordion-header h2 {
+      font-size: 1.15rem !important;
+      font-weight: 700 !important;
+      margin: 0 !important;
+      color: var(--brand-blue);
+    }
+    .minimal-accordion-chevron {
+      transition: transform 0.3s ease;
+      color: #6B7280;
+    }
+    .minimal-accordion-header[aria-expanded="true"] .minimal-accordion-chevron {
+      transform: rotate(180deg);
+    }
+    .minimal-accordion-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      opacity: 0;
+    }
+    .minimal-accordion-body:not(.collapsed) {
+      opacity: 1;
+    }
+
+    /* ── UNAL TABLE (CLEAN DESIGN) ── */
+    .unal-table-container {
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      border: 1px solid #E5E7EB;
+    }
+    .unal-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+    .unal-table th {
+      background: #F3F4F6;
+      color: #374151;
+      font-weight: 600;
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #D1D5DB;
+    }
+    .unal-table td {
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      color: #4B5563;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    .unal-table tr:last-child td {
+      border-bottom: none;
+    }
+    .unal-table tr:hover td {
+      background: #F9FAFB;
+    }
+
+  </style>
+</head>
+<body class="font-sans antialiased text-text-dark bg-page">
+
+  <div id="gae-landing">
+
+    <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+    <nav class="custom-navbar text-white shadow-md relative z-20 flex items-center">
+      <div class="w-full flex justify-center items-center h-full">
+        <ul class="nav-scroll flex items-center justify-center gap-0 text-sm font-medium whitespace-nowrap overflow-x-auto h-full px-4">
+          <li><a href="http://new-minas.medellin.unal.edu.co/index.php/asuntos-estudiantiles-home" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Inicio</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Acerca de la oficina</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Gestión de calidad</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Gestión de la información</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Flujo de atención</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════ MAIN ═══════════════════════ -->
+    <main>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- ── BREADCRUMB ── -->
+        <nav class="flex items-center gap-1.5 text-sm text-text-soft mb-8 flex-wrap reveal-on-scroll" aria-label="Breadcrumb">
+          <a href="http://new-minas.medellin.unal.edu.co/index.php/asuntos-estudiantiles-home" class="breadcrumb-link !text-brand-blue hover:!text-brand-blueLight !important">Inicio</a>
+          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          <span class="text-text-dark font-medium">Calendarios</span>
+          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          <span class="text-text-dark font-medium">Calendario Consejo Facultad de Minas</span>
+        </nav>
+
+        <!-- ── PAGE HEADER ── -->
+        <div class="mb-8 reveal-on-scroll">
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-blue m-0 p-0 leading-tight" style="font-size: 1.875rem !important; line-height: 2.25rem !important; font-weight: 800 !important;">Calendario Consejo Facultad de Minas</h1>
+          <div class="w-14 h-1 bg-brand-yellow mt-4"></div>
+        </div>
+
+        <!-- ── INTRO ALERT ── -->
+        <div class="mb-10 reveal-on-scroll">
+          <p class="text-[15px] text-text-mid leading-relaxed m-0 border-l-4 border-brand-yellow pl-4 py-1">
+            Consulte a continuación las fechas de recepción de solicitudes y las sesiones de la Comisión Delegataria y el Consejo de Facultad. La ventana actualmente abierta (si la hay) aparece resaltada. Verifique las fechas antes de radicar su solicitud. En caso de duda,
+            <a href="http://new-minas.medellin.unal.edu.co/index.php/gae-asesoria-y-contacto" class="inline-link font-semibold text-brand-blue">contacte al asesor estudiantil</a>
+            de la Facultad de Minas.
+          </p>
+        </div>
+
+        <!-- ═══════════════ RUTA DE LAS SOLICITUDES ═══════════════ -->
+        <div class="mb-14 reveal-on-scroll">
+          <h2 class="text-xl font-bold text-text-dark mb-4 flex items-center gap-2" style="border-bottom: 1px solid #E8ECF0; padding-bottom: 0.75rem; margin-top: 0 !important; font-size: 1.25rem !important;">
+            Ruta de las solicitudes
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+            <div class="flex flex-col gap-2">
+              <div class="text-brand-blue font-bold text-base border-b border-gray-100 pb-2">1. Recepción</div>
+              <p class="text-sm text-text-mid m-0">Radicación de la solicitud ante la Secretaría de Facultad en las fechas establecidas.</p>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="text-brand-blue font-bold text-base border-b border-gray-100 pb-2">2. Cierre</div>
+              <p class="text-sm text-text-mid m-0">Fin del periodo de recepción para la sesión correspondiente del Consejo.</p>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="text-brand-blue font-bold text-base border-b border-gray-100 pb-2">3. Comisión</div>
+              <p class="text-sm text-text-mid m-0">Revisión y análisis previo de las solicitudes por parte de la Comisión Delegataria.</p>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="text-brand-blue font-bold text-base border-b border-gray-100 pb-2">4. Consejo</div>
+              <p class="text-sm text-text-mid m-0">Toma de decisión final en la sesión formal del Consejo de Facultad.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════ CALENDARIOS ═══════════════ -->
+        <div class="mb-8 reveal-on-scroll">
+          
+          <!-- Periodo 2026-1S (CURRENT) -->
+          <div class="minimal-accordion" id="sec-2026-1S">
+            <div class="minimal-accordion-header" aria-expanded="true" onclick="toggleAccordion('sec-2026-1S')">
+              <div class="flex items-center gap-3">
+                <h2 class="m-0 p-0">Periodo 2026-1S</h2>
+                <span class="text-[10px] font-bold px-2 py-0.5 bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0] uppercase tracking-wider rounded-sm">Actual</span>
+              </div>
+              <i class="fa-solid fa-chevron-down minimal-accordion-chevron"></i>
+            </div>
+            <div class="minimal-accordion-body">
+              <div class="unal-table-container">
+                <table class="unal-table">
+                  <thead>
+                    <tr>
+                      <th>Estado</th>
+                      <th>Recepción de Solicitudes</th>
+                      <th>Comisión Delegataria</th>
+                      <th>Consejo de Facultad</th>
+                      <th>Observaciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td>13/01/2026 – 16/01/2026</td>
+                      <td>22/01/2026</td>
+                      <td>28/01/2026</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td>27/01/2026 – 30/01/2026</td>
+                      <td>05/02/2026</td>
+                      <td>11/02/2026</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td>10/02/2026 – 13/02/2026</td>
+                      <td>19/02/2026</td>
+                      <td>25/02/2026</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td>24/02/2026 – 27/02/2026</td>
+                      <td>05/03/2026</td>
+                      <td>11/03/2026</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td>10/03/2026 – 13/03/2026</td>
+                      <td>19/03/2026</td>
+                      <td>25/03/2026</td>
+                      <td class="text-xs italic text-gray-500">Semana Santa — sin sesión</td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td>07/04/2026 – 10/04/2026</td>
+                      <td>16/04/2026</td>
+                      <td>22/04/2026</td>
+                      <td></td>
+                    </tr>
+                    <tr style="background-color: #F0FDF4;">
+                      <td>
+                        <span class="text-xs font-bold text-[#059669] flex items-center gap-1.5 uppercase tracking-wide">
+                          <span class="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse"></span>
+                          Abierta
+                        </span>
+                      </td>
+                      <td class="font-semibold text-text-dark">16/06/2026 – 26/06/2026</td>
+                      <td class="font-semibold text-text-dark">02/07/2026</td>
+                      <td class="font-semibold text-text-dark">08/07/2026</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-brand-yellow uppercase tracking-wide">Próxima</span></td>
+                      <td>30/06/2026 – 03/07/2026</td>
+                      <td>09/07/2026</td>
+                      <td>15/07/2026</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Periodo 2025-2S (HISTORICAL) -->
+          <div class="minimal-accordion" id="sec-2025-2S">
+            <div class="minimal-accordion-header" aria-expanded="false" onclick="toggleAccordion('sec-2025-2S')">
+              <div class="flex items-center gap-3">
+                <h2 class="m-0 p-0 text-text-mid" style="color: #6B7280;">Periodo 2025-2S</h2>
+                <span class="text-[10px] font-bold px-2 py-0.5 bg-gray-100 text-gray-500 border border-gray-200 uppercase tracking-wider rounded-sm">Histórico</span>
+              </div>
+              <i class="fa-solid fa-chevron-down minimal-accordion-chevron text-gray-500"></i>
+            </div>
+            <div class="minimal-accordion-body collapsed">
+              <div class="unal-table-container">
+                <table class="unal-table">
+                  <thead>
+                    <tr>
+                      <th>Estado</th>
+                      <th>Recepción de Solicitudes</th>
+                      <th>Comisión Delegataria</th>
+                      <th>Consejo de Facultad</th>
+                      <th>Observaciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td class="text-gray-500">14/07/2025 – 18/07/2025</td>
+                      <td class="text-gray-500">24/07/2025</td>
+                      <td class="text-gray-500">30/07/2025</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td class="text-gray-500">28/07/2025 – 01/08/2025</td>
+                      <td class="text-gray-500">07/08/2025</td>
+                      <td class="text-gray-500">13/08/2025</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td class="text-gray-500">11/08/2025 – 15/08/2025</td>
+                      <td class="text-gray-500">21/08/2025</td>
+                      <td class="text-gray-500">27/08/2025</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td class="text-gray-500">25/08/2025 – 29/08/2025</td>
+                      <td class="text-gray-500">04/09/2025</td>
+                      <td class="text-gray-500">10/09/2025</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td class="text-gray-500">08/09/2025 – 12/09/2025</td>
+                      <td class="text-gray-500">18/09/2025</td>
+                      <td class="text-gray-500">24/09/2025</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td class="text-gray-500">22/09/2025 – 26/09/2025</td>
+                      <td class="text-gray-500">02/10/2025</td>
+                      <td class="text-gray-500">08/10/2025</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td class="text-gray-500">06/10/2025 – 10/10/2025</td>
+                      <td class="text-gray-500">16/10/2025</td>
+                      <td class="text-gray-500">22/10/2025</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Cerrada</span></td>
+                      <td class="text-gray-500">20/10/2025 – 24/10/2025</td>
+                      <td class="text-gray-500">30/10/2025</td>
+                      <td class="text-gray-500">05/11/2025</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── ORIENTATIVE DISCLAIMER ── -->
+        <div class="mt-6 mb-4 text-center reveal-on-scroll">
+          <p class="text-xs text-text-soft italic">
+            <i class="fa-solid fa-circle-info mr-1"></i>
+            Este calendario es orientativo. Las fechas pueden estar sujetas a cambios. Consulte siempre los canales oficiales.
+          </p>
+        </div>
+
+        <!-- ── BACK LINK ── -->
+        <div class="mt-10 reveal-on-scroll">
+          <a href="http://new-minas.medellin.unal.edu.co/index.php/asuntos-estudiantiles-home" class="inline-link text-sm">
+            <i class="fa-solid fa-arrow-left mr-1.5"></i> Volver al inicio
+          </a>
+        </div>
+
+        <!-- ── PRIVACY POLICY ── -->
+        <div class="mt-8 mb-8 text-center reveal-on-scroll">
+          <p class="text-xs text-text-soft">
+            La información que usted suministre será tratada de acuerdo a la <a href="https://unal.edu.co/proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer" class="inline-link">política de tratamiento de datos personales</a> de la Universidad Nacional de Colombia.
+          </p>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
+  <script>
+  function toggleAccordion(sectionId) {
+    const container = document.getElementById(sectionId);
+    const header = container.querySelector('.minimal-accordion-header');
+    const body = container.querySelector('.minimal-accordion-body');
+    const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+    if (isExpanded) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        body.classList.add('collapsed');
+        body.style.maxHeight = '0';
+      });
+      header.setAttribute('aria-expanded', 'false');
+    } else {
+      body.classList.remove('collapsed');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.addEventListener('transitionend', function handler() {
+        body.style.maxHeight = 'none';
+        body.removeEventListener('transitionend', handler);
+      });
+      header.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  // Initialize all sections as collapsed
+  document.querySelectorAll('.minimal-accordion-body').forEach(body => {
+    body.style.maxHeight = '0';
+  });
+
+  // Auto-expand current period (2026-1S)
+  const currentPeriod = document.getElementById('sec-2026-1S');
+  if (currentPeriod) {
+    const header = currentPeriod.querySelector('.minimal-accordion-header');
+    const body = currentPeriod.querySelector('.minimal-accordion-body');
+    body.classList.remove('collapsed');
+    body.style.maxHeight = 'none';
+    header.setAttribute('aria-expanded', 'true');
+  }
+
+  // ── REVEAL AL CARGAR (efecto cascada) ──
+  document.querySelectorAll('.reveal-on-scroll').forEach((el, i) => {
+    setTimeout(() => el.classList.add('revealed'), i * 80);
+  });
+  </script>
+
+  <!-- ═══════════════════════ FAB ASESORÍA ═══════════════════════ -->
+  <a href="http://new-minas.medellin.unal.edu.co/index.php/gae-asesoria-y-contacto"
+     class="fab-asesoria"
+     aria-label="Solicite asesoría estudiantil">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      <circle cx="12" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+      <circle cx="8.5" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+      <circle cx="15.5" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+    </svg>
+    <span class="fab-asesoria-label">Solicite asesoría</span>
+  </a>
+
+</body>
+</html>

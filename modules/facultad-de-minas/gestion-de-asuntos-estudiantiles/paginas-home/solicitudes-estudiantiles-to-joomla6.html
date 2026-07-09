@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitudes Estudiantiles | GAE – Facultad de Minas</title>
+  <meta name="description" content="Solicitudes estudiantiles ante el Consejo de la Facultad de Minas de la Universidad Nacional de Colombia Sede Medellín.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      important: true,
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              blue:      '#1C4587',
+              blueDark:  '#163570',
+              blueLight: '#2D62B5',
+              yellow:    '#F5B01B',
+              yellowDark:'#D4960E',
+            },
+            page:   '#F7F8FA',
+            card:   '#FFFFFF',
+            border: '#E8ECF0',
+            text: {
+              dark: '#1A1D23',
+              mid:  '#4B5563',
+              soft: '#9CA3AF',
+            },
+          }
+        }
+      }
+    }
+  </script>
+
+<style>
+    /* ── ESCUDO CSS CONTRA LA PLANTILLA DE LA UNAL ── */
+    #gae-landing {
+      font-family: 'Inter', sans-serif !important;
+    }
+    
+    /* Forzar la tipografía Inter en todos los elementos y evitar herencias raras */
+    #gae-landing h1, #gae-landing h2, #gae-landing h3, #gae-landing h4, #gae-landing h5, #gae-landing h6,
+    #gae-landing p, #gae-landing a, #gae-landing span, #gae-landing div, #gae-landing time, #gae-landing button {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    /* Eliminar la línea verde y bordes que la plantilla de Joomla inyecta en los títulos */
+    #gae-landing h1::after, #gae-landing h2::after, #gae-landing h3::after, #gae-landing h4::after,
+    #gae-landing h1::before, #gae-landing h2::before, #gae-landing h3::before, #gae-landing h4::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    #gae-landing h1, #gae-landing h2, #gae-landing h3, #gae-landing h4 {
+      border: none !important;
+      background: none !important;
+    }
+
+    /* Bloquear subrayados globales al pasar el mouse (Herencia de Joomla 6) */
+    #gae-landing a:hover, #gae-landing p:hover, #gae-landing span:hover, 
+    #gae-landing h1:hover, #gae-landing h2:hover, #gae-landing h3:hover, 
+    #gae-landing h4:hover, #gae-landing div:hover, #gae-landing section:hover, #gae-landing button:hover {
+      text-decoration: none !important;
+    }
+
+    /* Permitir subrayado únicamente en los textos explícitamente solicitados */
+    #gae-landing .enlace-subrayado:hover {
+      text-decoration: underline !important;
+    }
+
+    /* ── VARIABLES ── */
+    :root {
+      --brand-blue: #1C4587;
+      --brand-yellow: #F5B01B;
+      --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 28px;
+    }
+
+    /* ── NAVBAR ── */
+    .custom-navbar {
+      background-color: #1C4587;
+      height: 55px;
+    }
+
+    .nav-scroll { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+
+    /* ── GRID COLUMNAR (flujo de arriba hacia abajo por columna) ── */
+    #solGrid {
+      column-count: 1;
+      column-gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      #solGrid { column-count: 2; }
+    }
+
+    @media (min-width: 1024px) {
+      #solGrid { column-count: 3; }
+    }
+
+    /* ── SOLICITUD CARDS (DISEÑO MINIMALISTA Y PROFESIONAL) ── */
+    .sol-card {
+      position: relative;
+      background: #fff;
+      border: 1px solid #E5E7EB; /* Borde más definido y suave */
+      border-radius: var(--r-lg);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none !important;
+      color: #1A1D23 !important;
+      /* Sombra estática suave para que las tarjetas resalten del fondo sin cansar el ojo */
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      cursor: pointer;
+      overflow: hidden; /* Necesario para el efecto decorativo lateral */
+      break-inside: avoid;
+      margin-bottom: 1rem;
+    }
+
+    /* Detalle elegante: Línea amarilla a la izquierda al hacer hover */
+    .sol-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: var(--brand-yellow);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+      transform-origin: center;
+    }
+
+    .sol-card:hover {
+      transform: translateY(-4px);
+      /* Sombra más amplia y sutil que indica interactividad */
+      box-shadow: 0 12px 28px rgba(28, 69, 135, 0.08);
+      border-color: #D1D5DB;
+    }
+
+    .sol-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .sol-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.3;
+      transition: color .25s;
+    }
+
+    /* Flecha con un rediseño que se adapta al hover */
+    .sol-arrow {
+      margin-left: auto;
+      width: 34px; height: 34px; min-width: 34px;
+      border-radius: 50%;
+      background: #F3F4F6;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      color: #6B7280;
+      transition: all .25s ease;
+    }
+
+    .sol-card:hover .sol-arrow {
+      background: var(--brand-blue);
+      color: #fff;
+      transform: translateX(4px);
+    }
+
+    /* ── FILTER PILLS ── */
+    .filter-pill {
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      border: 1.5px solid #E8ECF0;
+      background: #fff;
+      color: #667486;
+      cursor: pointer;
+      transition: all .25s ease;
+      white-space: nowrap;
+    }
+
+    .filter-pill:hover {
+      color: #4B5563;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.07);
+    }
+
+    .filter-pill.active {
+      background: #EDBD06;
+      color: #1A1D23;
+      border-color: #EDBD06;
+    }
+
+    .filter-pill.active:hover {
+      box-shadow: 0 8px 18px rgba(237, 189, 6, 0.25);
+    }
+
+    /* ── SEARCH (CON EFECTO FOCUS) ── */
+    .search-box {
+      background: #fff;
+      border: 1.5px solid #E8ECF0;
+      border-radius: var(--r-md);
+      padding: 0.65rem 1rem 0.65rem 2.75rem;
+      font-size: 0.875rem;
+      width: 100%;
+      color: #1A1D23;
+      transition: border-color .2s ease, box-shadow .2s ease;
+      outline: none;
+    }
+
+    .search-box::placeholder { color: #9CA3AF; }
+
+    /* Efecto sutil al darle foco a la barra de búsqueda */
+    .search-box:focus {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    /* ── COUNTER BADGE ── */
+    .counter-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0 6px;
+    }
+
+    /* ── NO RESULTS ── */
+    .no-results-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: #F3F4F6;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    /* ── FAB (Floating Action Button) ── */
+    .fab-asesoria {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      height: 56px;
+      max-width: 56px;
+      padding: 0 16px;
+      border-radius: 9999px;
+      background: var(--brand-yellow);
+      color: #fff !important;
+      text-decoration: none !important;
+      box-shadow: 0 6px 20px rgba(245, 176, 27, 0.4);
+      overflow: hidden;
+      cursor: pointer;
+      transition: max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.25s ease,
+                  gap 0.3s ease;
+    }
+
+    .fab-asesoria:hover {
+      max-width: 280px;
+      gap: 10px;
+      box-shadow: 0 8px 28px rgba(245, 176, 27, 0.55);
+    }
+
+    .fab-asesoria svg {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+
+    .fab-asesoria-label {
+      white-space: nowrap;
+      font-family: 'Ancizar Sans', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: #fff;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: opacity 0.25s ease 0.1s,
+                  max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fab-asesoria:hover .fab-asesoria-label {
+      opacity: 1;
+      max-width: 200px;
+    }
+
+    /* ── REVEAL AL CARGAR ── */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform .6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased text-text-dark bg-page">
+
+  <div id="gae-landing">
+
+    <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+    <nav class="custom-navbar text-white shadow-md relative z-0 flex items-center">
+      <div class="w-full flex justify-center items-center h-full">
+        <ul class="nav-scroll flex items-center justify-center gap-0 text-sm font-medium whitespace-nowrap overflow-x-auto h-full px-4">
+          <li><a href="http://new-minas.medellin.unal.edu.co/index.php/asuntos-estudiantiles-home" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Inicio</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Acerca de la oficina</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Gestión de calidad</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Gestión de la información</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Flujo de atención</a></li>
+          <li class="text-white/30 select-none hidden sm:block">|</li>
+          <li><a href="#" class="block py-4 px-3 hover:text-brand-yellow transition-colors text-white">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════ MAIN ═══════════════════════ -->
+    <main>
+      <section class="relative overflow-hidden w-full">
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+          <!-- ── HEADER DE SECCIÓN ── -->
+          <div class="flex flex-col items-center mb-10 reveal-on-scroll">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-text-dark m-0 p-0">Trámites disponibles</h2>
+            <div class="w-16 h-1.5 bg-brand-yellow mt-4 rounded-full"></div>
+            <p class="text-text-mid text-sm mt-3 text-center max-w-xl">
+              Acceda a las solicitudes estudiantiles disponibles. Use el buscador para encontrar su trámite.
+            </p>
+          </div>
+
+          <!-- ── BUSCADOR ── -->
+          <div class="flex flex-col gap-4 mb-10 reveal-on-scroll">
+            <div class="relative max-w-md mx-auto w-full">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                <i class="fa-solid fa-magnifying-glass text-text-soft text-sm"></i>
+              </div>
+              <input
+                type="text"
+                id="searchInput"
+                class="search-box"
+                placeholder="Buscar solicitud (ej. cancelación, grado, traslado...)"
+                autocomplete="off"
+              >
+            </div>
+          </div>
+
+          <!-- ── GRID DE SOLICITUDES (orden alfabético, columna por columna) ── -->
+          <div id="solGrid">
+
+            <!-- ═══ COLUMNA 1 (A-D): items 1-9 ═══ -->
+
+            <a href="http://new-minas.medellin.unal.edu.co/index.php/gae-admision-automatica"
+               class="sol-card" data-title="Admisión Automática">
+              <div>
+                <div class="sol-title">Admisión Automática</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/100-solicitud-de-beneficios-para-cursar-estudios-de-posgrado.html"
+               class="sol-card" data-title="Beneficios para cursar estudios de Posgrado">
+              <div>
+                <div class="sol-title">Beneficios para cursar estudios de Posgrado</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/102-solicitud-de-cambio-de-tutor.html"
+               class="sol-card" data-title="Cambio de Tutor">
+              <div>
+                <div class="sol-title">Cambio de Tutor</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/103-solicitud-de-cancelacion-de-asignatura-s.html"
+               class="sol-card" data-title="Cancelación de Asignatura(s)">
+              <div>
+                <div class="sol-title">Cancelación de Asignatura(s)</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/104-solicitud-de-cancelacion-del-periodo-academico.html"
+               class="sol-card" data-title="Cancelación del Periodo Académico">
+              <div>
+                <div class="sol-title">Cancelación del Periodo Académico</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/105-solicitud-de-carga-inferior-a-la-minima.html"
+               class="sol-card" data-title="Carga Inferior a la Mínima">
+              <div>
+                <div class="sol-title">Carga Inferior a la Mínima</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/128-solicitud-de-descuento-en-posgrado-para-hijos-de-empleados.html"
+               class="sol-card" data-title="Descuento en Posgrado para Hijos de Empleados">
+              <div>
+                <div class="sol-title">Descuento en Posgrado para Hijos de Empleados</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/106-solicitud-de-devolucion-de-dinero.html"
+               class="sol-card" data-title="Devolución de Dinero">
+              <div>
+                <div class="sol-title">Devolución de Dinero</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/107-solicitud-de-doble-titulacion.html"
+               class="sol-card" data-title="Doble Titulación (misma sede, otra carrera)">
+              <div>
+                <div class="sol-title">Doble Titulación (misma sede, otra carrera)</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- ═══ COLUMNA 2 (D-M): items 10-17 ═══ -->
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/108-solicitud-de-doble-titulacion-internacional.html"
+               class="sol-card" data-title="Doble Titulación Internacional">
+              <div>
+                <div class="sol-title">Doble Titulación Internacional</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/109-solicitud-de-evaluacion-de-actividad-academica.html"
+               class="sol-card" data-title="Evaluación de Actividad Académica">
+              <div>
+                <div class="sol-title">Evaluación de Actividad Académica</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/112-solicitud-de-inscripcion-adicion-asignatura-s-y-o-actividad-es-academica-s.html"
+               class="sol-card" data-title="Inscripción/Adición Asignatura(s) y/o Actividad(es) Académica(s)">
+              <div>
+                <div class="sol-title">Inscripción/Adición Asignatura(s) y/o Actividad(es)</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/111-solicitud-de-jurado-s.html"
+               class="sol-card" data-title="Jurado(s)">
+              <div>
+                <div class="sol-title">Jurado(s)</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/113-solicitud-de-modificacion-de-actividad-academica.html"
+               class="sol-card" data-title="Modificación de Actividad Académica">
+              <div>
+                <div class="sol-title">Modificación de Actividad Académica</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/114-solicitud-de-modificacion-de-trabajo-de-grado-tdg.html"
+               class="sol-card" data-title="Modificación de Trabajo de Grado TDG">
+              <div>
+                <div class="sol-title">Modificación de Trabajo de Grado TDG</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/115-solicitud-de-movilidad-interna-entre-sedes"
+               class="sol-card" data-title="Movilidad Interna Entre Sedes">
+              <div>
+                <div class="sol-title">Movilidad Interna Entre Sedes</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/116-practica-academica-especial-pae.html"
+               class="sol-card" data-title="Práctica Académica Especial PAE">
+              <div>
+                <div class="sol-title">Práctica Académica Especial PAE</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- ═══ COLUMNA 3 (R-T): items 18-25 ═══ -->
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/117-solicitud-de-reconocimiento-de-asignatura-s.html"
+               class="sol-card" data-title="Reconocimiento de Asignatura(s)">
+              <div>
+                <div class="sol-title">Reconocimiento de Asignatura(s)</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/118-solicitud-de-recurso-de-reposicion-y-o-apelacion.html"
+               class="sol-card" data-title="Recurso de reposición y/o apelación">
+              <div>
+                <div class="sol-title">Recurso de reposición y/o apelación</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/119-solicitud-de-reingreso.html"
+               class="sol-card" data-title="Reingreso">
+              <div>
+                <div class="sol-title">Reingreso</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/120-solicitud-de-reserva-de-cupo-adicional.html"
+               class="sol-card" data-title="Reserva de Cupo Adicional">
+              <div>
+                <div class="sol-title">Reserva de Cupo Adicional</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/121-solicitud-de-retiro-de-la-universidad.html"
+               class="sol-card" data-title="Retiro de la Universidad">
+              <div>
+                <div class="sol-title">Retiro de la Universidad</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/122-solicitud-de-trabajo-de-grado.html"
+               class="sol-card" data-title="Trabajo de Grado TDG">
+              <div>
+                <div class="sol-title">Trabajo de Grado TDG</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/124-traslado.html"
+               class="sol-card" data-title="Traslado">
+              <div>
+                <div class="sol-title">Traslado</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://minas.medellin.unal.edu.co/tramitesestudiantiles/12-solicitudes-estudiantiles-de-la-facultad-de-minas/123-solicitud-de-transito-a-un-nivel-de-formacion-superior-pos.html"
+               class="sol-card" data-title="Tránsito (Nivel de Formación Superior POS)">
+              <div>
+                <div class="sol-title">Tránsito (Nivel de Formación Superior POS)</div>
+              </div>
+              <div class="sol-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+          </div>
+
+          <!-- ── NO RESULTS ── -->
+          <div id="noResults" class="hidden py-16 text-center">
+            <div class="no-results-icon">
+              <i class="fa-solid fa-magnifying-glass text-2xl text-text-soft"></i>
+            </div>
+            <p class="text-text-mid font-semibold text-lg mb-1">Sin resultados</p>
+            <p class="text-text-soft text-sm">No se encontraron solicitudes que coincidan con su búsqueda.</p>
+          </div>
+
+
+
+        </div>
+      </section>
+      
+
+      <!-- ═══════════════════════ FOOTER LINKS ═══════════════════════ -->
+      
+    </main>
+
+  </div>
+
+  <!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
+  <script>
+  (function () {
+    const searchInput  = document.getElementById('searchInput');
+    const grid         = document.getElementById('solGrid');
+    const cards        = Array.from(grid.querySelectorAll('.sol-card'));
+    const noResults    = document.getElementById('noResults');
+
+    // ── Normalize for accent-insensitive search ──
+    function normalize(str) {
+      return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    // ── Filter logic (solo búsqueda, sin categorías) ──
+    function applyFilters() {
+      const term = normalize(searchInput.value);
+      let visible = 0;
+
+      cards.forEach(card => {
+        const title = normalize(card.getAttribute('data-title'));
+        const matchesSearch = title.includes(term);
+
+        if (matchesSearch) {
+          card.style.display = '';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      noResults.classList.toggle('hidden', visible > 0);
+      grid.classList.toggle('hidden', visible === 0);
+    }
+
+    // ── Search input ──
+    searchInput.addEventListener('input', applyFilters);
+  })();
+
+  // ── REVEAL AL CARGAR (efecto cascada) ──
+  // Header y buscador: delay de 100ms entre cada uno
+  document.querySelectorAll('.reveal-on-scroll').forEach((el, i) => {
+    setTimeout(() => el.classList.add('revealed'), i * 100);
+  });
+
+  // Tarjetas del grid: delay de 40ms (más rápido porque son muchas)
+  const baseDelay = document.querySelectorAll('.reveal-on-scroll').length * 100;
+  document.querySelectorAll('.sol-card').forEach((card, i) => {
+    card.classList.add('reveal-on-scroll');
+    setTimeout(() => card.classList.add('revealed'), baseDelay + (i * 40));
+  });
+  </script>
+
+  <!-- ═══════════════════════ FAB ASESORÍA ═══════════════════════ -->
+  <a href="http://new-minas.medellin.unal.edu.co/index.php/gae-asesoria-y-contacto"
+     class="fab-asesoria"
+     aria-label="Solicite asesoría estudiantil">
+    <i class="fa-solid fa-comments"></i>
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      <circle cx="12" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+      <circle cx="8.5" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+      <circle cx="15.5" cy="11.5" r="1" fill="var(--brand-yellow)"/>
+    </svg>
+    <span class="fab-asesoria-label">Solicite asesoría</span>
+  </a>
+
+</body>
+</html>
