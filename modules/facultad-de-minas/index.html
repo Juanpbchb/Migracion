@@ -351,7 +351,9 @@
         }
 
         .estudia-paragraph {
-            font-family: 'Ancizar Sans Regular', sans-serif;
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: normal;
             color: var(--text-gray);
             line-height: 1.6;
             margin-bottom: 25px;
@@ -390,27 +392,34 @@
         }
 
         .estudia-feature-text {
-            font-family: 'Ancizar Sans Regular', sans-serif;
+            font-family: 'Ancizar Sans', 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 400;
             color: var(--text-dark);
             font-size: 1.05rem;
         }
 
         /* ── Botón ── */
         .estudia-btn {
-            font-family: 'Ancizar Sans Bold Italic', sans-serif;
+            font-family: 'Ancizar Sans Light Italic', sans-serif;
+            font-weight: 700;
             background-color: var(--accent-yellow);
-            color: var(--btn-text);
+            color: #3A3A39;
             text-decoration: none;
             padding: 12px 35px;
-            border-radius: 50px;
+            border-radius: 8px;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             display: inline-block;
         }
 
+        .estudia-btn.estudia-reveal.is-visible {
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .estudia-btn.estudia-reveal.is-visible:hover,
         .estudia-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px) !important;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .estudia-image-container {
@@ -432,6 +441,49 @@
                 padding: 4rem 5%;
                 gap: 40px;
             }
+        }
+
+        /* =============================================================
+           ANIMACIONES — Sección Estudia en la Facultad
+           ============================================================= */
+        /* Estado inicial: oculto y desplazado */
+        .estudia-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .estudia-reveal-image {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Estado final: visible */
+        .estudia-reveal.is-visible,
+        .estudia-reveal-image.is-visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* Delays escalonados para cada elemento */
+        .estudia-reveal[data-delay="1"] { transition-delay: 0.1s; }
+        .estudia-reveal[data-delay="2"] { transition-delay: 0.25s; }
+        .estudia-reveal[data-delay="3"] { transition-delay: 0.4s; }
+        .estudia-reveal[data-delay="4"] { transition-delay: 0.55s; }
+        .estudia-reveal[data-delay="5"] { transition-delay: 0.7s; }
+        .estudia-reveal-image { transition-delay: 0.3s; }
+
+        /* Animación de la línea decorativa */
+        .estudia-eyebrow-line {
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0.3s;
+        }
+        .estudia-eyebrow-container.is-visible .estudia-eyebrow-line {
+            transform: scaleX(1);
         }
 
         /* =============================================================
@@ -535,19 +587,19 @@
          ═══════════════════════════════════════════════════════════════ -->
 
     <!-- SECCIÓN: ESTUDIA EN LA FACULTAD -->
-    <section class="estudia-facultad-section">
+    <section class="estudia-facultad-section" id="estudia-section">
         <!-- Columna Izquierda (Contenido) -->
         <div class="estudia-content">
-            <div class="estudia-eyebrow-container">
+            <div class="estudia-eyebrow-container estudia-reveal" data-delay="1">
                 <span class="estudia-eyebrow">ESTUDIA EN LA FACULTAD</span>
                 <div class="estudia-eyebrow-line"></div>
             </div>
             
-            <h2 class="estudia-title">Descubre tu potencial en nuestra facultad</h2>
+            <h2 class="estudia-title estudia-reveal" data-delay="2">Descubre tu potencial en nuestra facultad</h2>
             
-            <p class="estudia-paragraph">Ofrecemos una amplia gama de posibilidades educativas para potenciar tu desarrollo profesional.</p>
+            <p class="estudia-paragraph estudia-reveal" data-delay="3">Ofrecemos una amplia gama de posibilidades educativas para potenciar tu desarrollo profesional.</p>
             
-            <div class="estudia-features-list">
+            <div class="estudia-features-list estudia-reveal" data-delay="4">
                 <div class="estudia-feature-item">
                     <div class="icon-badge">
                         <i class="ti ti-school"></i>
@@ -570,11 +622,11 @@
                 </div>
             </div>
             
-            <a href="#" class="estudia-btn">Conoce más</a>
+            <a href="#" class="estudia-btn estudia-reveal" data-delay="5">Conoce más</a>
         </div>
 
         <!-- Columna Derecha (Imagen) -->
-        <div class="estudia-image-container">
+        <div class="estudia-image-container estudia-reveal-image">
             <img src="https://minas.medellin.unal.edu.co/images/2025/BoletinSomosMinas/29_01_2025/MinasPanoramica2025.jpg" alt="Estudia en la Facultad de Minas">
         </div>
     </section>
@@ -650,6 +702,37 @@
             });
 
             observer.observe(statsBar);
+        })();
+
+        /* ═══════════════════════════════════════════════════════════════
+           Animación Scroll-Reveal — Sección Estudia en la Facultad
+           ═══════════════════════════════════════════════════════════════ */
+        (function () {
+            'use strict';
+
+            var estudiaSection = document.getElementById('estudia-section');
+            if (!estudiaSection) return;
+
+            var revealElements = estudiaSection.querySelectorAll('.estudia-reveal, .estudia-reveal-image');
+            var revealed = false;
+
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !revealed) {
+                        revealed = true;
+
+                        revealElements.forEach(function (el) {
+                            el.classList.add('is-visible');
+                        });
+
+                        revealObserver.unobserve(estudiaSection);
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            revealObserver.observe(estudiaSection);
         })();
     </script>
 
