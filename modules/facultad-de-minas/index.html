@@ -531,6 +531,167 @@
                 border-bottom: none;
             }
         }
+
+        /* =============================================================
+           SECCIÓN: TARJETAS DE SERVICIOS
+           ============================================================= */
+        .tarjetas-minas-section,
+        .tarjetas-minas-section *,
+        .tarjetas-minas-section *::before,
+        .tarjetas-minas-section *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .tarjetas-minas-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --tm-bg-dark: rgba(20, 26, 35, 0.85);
+            --tm-blanco: #ffffff;
+            --tm-negro: #1A1A1A;
+            --tm-amarillo: #F7AD14;
+            --tm-card-bg: rgba(255, 255, 255, 0.03);
+            --tm-card-border: rgba(255, 255, 255, 0.1);
+            --tm-card-border-hover: rgba(255, 255, 255, 0.3);
+            --tm-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            position: relative;
+            padding: 5rem 5%;
+            background: linear-gradient(var(--tm-bg-dark), var(--tm-bg-dark)),
+                        url('./assets/images/AulaMaxima.jpg') center / cover no-repeat;
+            overflow: hidden;
+        }
+
+        /* ── Grid de Tarjetas ── */
+        .grid-tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── Tarjeta individual (Glassmorphism) ── */
+        .tarjeta-mina {
+            background: var(--tm-card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--tm-card-border);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            color: var(--tm-blanco);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s var(--tm-ease),
+                        border-color 0.3s var(--tm-ease),
+                        box-shadow 0.3s var(--tm-ease);
+        }
+
+        .tarjeta-mina:hover {
+            transform: translateY(-5px);
+            border-color: var(--tm-card-border-hover);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ── Ícono ── */
+        .tarjeta-mina-icon {
+            font-size: 34px;
+            color: var(--tm-blanco);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        /* ── Título ── */
+        .tarjeta-mina-title {
+            font-family: 'Ancizar Sans Regular', sans-serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 15px;
+            color: var(--tm-blanco);
+        }
+
+        /* ── Párrafo ── */
+        .tarjeta-mina-text {
+            font-family: 'Ancizar Sans Regular', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.8;
+            margin-bottom: 25px;
+            color: var(--tm-blanco);
+        }
+
+        /* ── Botón fantasma ── */
+        .tarjeta-mina-btn {
+            font-family: 'Ancizar Sans Bold', sans-serif;
+            background: transparent;
+            border: 1px solid var(--tm-blanco);
+            color: var(--tm-blanco);
+            padding: 10px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: background 0.15s ease,
+                        border-color 0.15s ease,
+                        color 0.15s ease,
+                        transform 0.15s ease;
+            display: inline-block;
+            margin-top: auto;
+        }
+
+        .tarjeta-mina-btn:hover {
+            background: var(--tm-amarillo);
+            border-color: var(--tm-amarillo);
+            color: #3A3A39;
+            font-weight: 700;
+            transform: translateY(-5px);
+        }
+
+        /* ── Animación scroll-reveal tarjetas ── */
+        .tarjeta-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s var(--tm-ease),
+                        transform 0.7s var(--tm-ease);
+        }
+
+        .tarjeta-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delays escalonados */
+        .tarjeta-reveal[data-delay="1"] { transition-delay: 0.05s; }
+        .tarjeta-reveal[data-delay="2"] { transition-delay: 0.15s; }
+        .tarjeta-reveal[data-delay="3"] { transition-delay: 0.25s; }
+        .tarjeta-reveal[data-delay="4"] { transition-delay: 0.35s; }
+        .tarjeta-reveal[data-delay="5"] { transition-delay: 0.45s; }
+        .tarjeta-reveal[data-delay="6"] { transition-delay: 0.55s; }
+
+        /* Restaurar transición rápida tras animación para hover */
+        .tarjeta-reveal.is-visible.tarjeta-mina {
+            transition: transform 0.3s var(--tm-ease),
+                        border-color 0.3s var(--tm-ease),
+                        box-shadow 0.3s var(--tm-ease);
+        }
+
+        /* ── Responsive tarjetas ── */
+        @media (max-width: 768px) {
+            .tarjetas-minas-section {
+                padding: 4rem 5%;
+            }
+            .grid-tarjetas {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -627,7 +788,64 @@
 
         <!-- Columna Derecha (Imagen) -->
         <div class="estudia-image-container estudia-reveal-image">
-            <img src="https://minas.medellin.unal.edu.co/images/2025/BoletinSomosMinas/29_01_2025/MinasPanoramica2025.jpg" alt="Estudia en la Facultad de Minas">
+            <img src="./assets/images/Escalas-M3.jpg" alt="Estudia en la Facultad de Minas">
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECCIÓN: TARJETAS DE SERVICIOS
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="tarjetas-minas-section" id="tarjetas-section">
+        <div class="grid-tarjetas">
+
+            <!-- Tarjeta 1: Noticias -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="1">
+                <i class="ti ti-calendar-event tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Noticias</h3>
+                <p class="tarjeta-mina-text">¡No te pierdas las noticias de nuestra Facultad! Mantente informado sobre eventos, convocatorias, actividades académicas y las últimas novedades.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 2: Museo de Geociencias -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="2">
+                <i class="ti ti-building-bank tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Museo de Geociencias</h3>
+                <p class="tarjeta-mina-text">Explora el fascinante mundo de la ciencia en nuestro museo. ¡Ven y descubre con nosotros!</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 3: Trámites Estudiantiles -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="3">
+                <i class="ti ti-file-description tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Trámites Estudiantiles</h3>
+                <p class="tarjeta-mina-text">Gestiona de manera sencilla tus solicitudes académicas, certificados, procesos administrativos y demás trámites estudiantiles.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 4: Graduandos -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="4">
+                <i class="ti ti-school tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Graduandos</h3>
+                <p class="tarjeta-mina-text">Conoce toda la información relacionada con grados, requisitos, fechas y procesos académicos para tu camino hacia la graduación.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 5: Campus Sostenible -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="5">
+                <i class="ti ti-home-eco tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Campus Sostenible</h3>
+                <p class="tarjeta-mina-text">Promovemos un campus comprometido con la sostenibilidad, el cuidado del medio ambiente y el desarrollo de prácticas responsables.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 6: Servicios de Laboratorios -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="6">
+                <i class="ti ti-flask tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Servicios de Laboratorios de Extensión</h3>
+                <p class="tarjeta-mina-text">Conoce nuestros servicios de laboratorio de alta calidad para investigación, análisis y desarrollo científico.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
         </div>
     </section>
 
@@ -733,6 +951,39 @@
             });
 
             revealObserver.observe(estudiaSection);
+        })();
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación Scroll-Reveal Tarjetas de Servicios
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var tarjetasSection = document.getElementById('tarjetas-section');
+            if (!tarjetasSection) return;
+
+            var tarjetas = tarjetasSection.querySelectorAll('.tarjeta-reveal');
+            var tarjetasRevealed = false;
+
+            var tarjetasObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !tarjetasRevealed) {
+                        tarjetasRevealed = true;
+
+                        tarjetas.forEach(function (el) {
+                            el.classList.add('is-visible');
+                        });
+
+                        tarjetasObserver.unobserve(tarjetasSection);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            tarjetasObserver.observe(tarjetasSection);
         })();
     </script>
 
