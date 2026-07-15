@@ -343,7 +343,9 @@
         }
 
         .estudia-title {
-            font-family: 'Ancizar Sans Bold Italic', sans-serif;
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: italic;
             color: var(--text-dark);
             font-size: clamp(2rem, 3vw, 3rem);
             line-height: 1.2;
@@ -606,11 +608,11 @@
 
         /* ── Título ── */
         .tarjeta-mina-title {
-            font-family: 'Ancizar Sans Regular', sans-serif;
-            font-weight: 400;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: 1.2rem;
+            letter-spacing: 0.02em;
             margin-bottom: 15px;
             color: var(--tm-blanco);
         }
@@ -692,6 +694,159 @@
             }
         }
 
+        /* =============================================================
+           SECCIÓN: ACERCA DE LA FACULTAD
+           ============================================================= */
+        .acerca-facultad-section,
+        .acerca-facultad-section *,
+        .acerca-facultad-section *::before,
+        .acerca-facultad-section *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .acerca-facultad-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --bg-color: #FFFFFF;
+            --accent-yellow: #F7AD14;
+            --text-gray-light: #555555;
+            --text-gray-dark: #222222;
+            --btn-text: #3A3A39;
+            --af-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            background-color: var(--bg-color);
+            padding: 5rem 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .acerca-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .acerca-title {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--accent-yellow);
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .acerca-paragraph-light {
+            font-family: 'Ancizar Sans Regular', sans-serif;
+            color: var(--text-gray-light);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .acerca-paragraph-dark {
+            font-family: 'Ancizar Sans Regular', sans-serif;
+            color: var(--text-gray-dark);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            margin-bottom: 35px;
+        }
+
+        /* ── Grid de botones 2x2 ── */
+        .acerca-buttons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .acerca-btn {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            background-color: var(--accent-yellow);
+            color: var(--btn-text);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+            display: block;
+            transition: transform 0.15s ease,
+                        box-shadow 0.15s ease,
+                        filter 0.15s ease;
+        }
+
+        .acerca-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(0.92);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ── Imagen ── */
+        .acerca-image-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .acerca-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        /* ── Animación scroll-reveal acerca ── */
+        .acerca-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s var(--af-ease),
+                        transform 0.8s var(--af-ease);
+        }
+
+        .acerca-reveal-image {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 1s var(--af-ease),
+                        transform 1s var(--af-ease);
+        }
+
+        .acerca-reveal.is-visible,
+        .acerca-reveal-image.is-visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        .acerca-reveal[data-delay="1"] { transition-delay: 0.1s; }
+        .acerca-reveal[data-delay="2"] { transition-delay: 0.25s; }
+        .acerca-reveal[data-delay="3"] { transition-delay: 0.4s; }
+        .acerca-reveal[data-delay="4"] { transition-delay: 0.55s; }
+        .acerca-reveal-image { transition-delay: 0.3s; }
+
+        /* Restaurar transición rápida tras reveal para hover de botones */
+        .acerca-reveal.is-visible .acerca-btn {
+            transition: transform 0.15s ease,
+                        box-shadow 0.15s ease,
+                        filter 0.15s ease;
+        }
+
+        /* ── Responsive acerca ── */
+        @media (max-width: 768px) {
+            .acerca-facultad-section {
+                grid-template-columns: 1fr;
+                padding: 4rem 5%;
+                gap: 40px;
+            }
+            .acerca-buttons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -756,7 +911,7 @@
                 <div class="estudia-eyebrow-line"></div>
             </div>
             
-            <h2 class="estudia-title estudia-reveal" data-delay="2">Descubre tu potencial en nuestra facultad</h2>
+            <h2 class="estudia-title estudia-reveal" data-delay="2"><strong>Descubre tu potencial en nuestra facultad</strong></h2>
             
             <p class="estudia-paragraph estudia-reveal" data-delay="3">Ofrecemos una amplia gama de posibilidades educativas para potenciar tu desarrollo profesional.</p>
             
@@ -846,6 +1001,32 @@
                 <a href="#" class="tarjeta-mina-btn">Ver más</a>
             </div>
 
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECCIÓN: ACERCA DE LA FACULTAD
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="acerca-facultad-section" id="acerca-section">
+        <!-- Columna Izquierda (Contenido) -->
+        <div class="acerca-content">
+            <h2 class="acerca-title acerca-reveal" data-delay="1">Acerca de la Facultad</h2>
+
+            <p class="acerca-paragraph-light acerca-reveal" data-delay="2">La Facultad de Minas de la Universidad Nacional de Colombia, Sede Medellín, es una de las instituciones académicas más importantes del país en el área de ingeniería y ciencias aplicadas. Desde su fundación en 1886, ha formado generaciones de profesionales comprometidos con el desarrollo científico, tecnológico y social de Colombia.</p>
+
+            <p class="acerca-paragraph-dark acerca-reveal" data-delay="3">Hoy, frente a los constantes avances científicos y tecnológicos, la Facultad continúa fortaleciendo sus programas académicos, impulsando la investigación de alto impacto y promoviendo la extensión universitaria como pilares fundamentales de su misión institucional.</p>
+
+            <div class="acerca-buttons-grid acerca-reveal" data-delay="4">
+                <a href="#" class="acerca-btn"><strong>Dependencias</strong></a>
+                <a href="#" class="acerca-btn"><strong>Departamentos e institutos</strong></a>
+                <a href="#" class="acerca-btn"><strong>Directorio docente</strong></a>
+                <a href="#" class="acerca-btn"><strong>Áreas curriculares</strong></a>
+            </div>
+        </div>
+
+        <!-- Columna Derecha (Imagen) -->
+        <div class="acerca-image-container acerca-reveal-image">
+            <img src="https://minas.medellin.unal.edu.co/images/2024/pregrados/04122020-IMG_3168.jpg" alt="Acerca de la Facultad de Minas">
         </div>
     </section>
 
@@ -984,6 +1165,39 @@
             });
 
             tarjetasObserver.observe(tarjetasSection);
+        })();
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación Scroll-Reveal Acerca de la Facultad
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var acercaSection = document.getElementById('acerca-section');
+            if (!acercaSection) return;
+
+            var acercaElements = acercaSection.querySelectorAll('.acerca-reveal, .acerca-reveal-image');
+            var acercaRevealed = false;
+
+            var acercaObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !acercaRevealed) {
+                        acercaRevealed = true;
+
+                        acercaElements.forEach(function (el) {
+                            el.classList.add('is-visible');
+                        });
+
+                        acercaObserver.unobserve(acercaSection);
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            acercaObserver.observe(acercaSection);
         })();
     </script>
 
