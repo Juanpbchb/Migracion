@@ -569,15 +569,11 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
-        /* ── Tarjeta individual (Glassmorphism) ── */
+        /* ── Tarjeta individual (Glassmorphism — 2 capas) ── */
         .tarjeta-mina {
-            background: var(--tm-card-bg);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--tm-card-border);
             padding: 40px 30px;
             border-radius: 12px;
             text-align: center;
@@ -586,15 +582,33 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
+            position: relative;
+            isolation: isolate;
             transition: transform 0.3s var(--tm-ease),
-                        border-color 0.3s var(--tm-ease),
                         box-shadow 0.3s var(--tm-ease);
+        }
+
+        /* ── Capa 1: Fondo glassmorphism (pseudo-elemento) ── */
+        .tarjeta-mina::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--tm-card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--tm-card-border);
+            border-radius: inherit;
+            z-index: -1;
+            transition: border-color 0.3s var(--tm-ease);
         }
 
         .tarjeta-mina:hover {
             transform: translateY(-5px);
-            border-color: var(--tm-card-border-hover);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .tarjeta-mina:hover::before {
+            border-color: var(--tm-card-border-hover);
         }
 
         /* ── Ícono ── */
@@ -679,8 +693,8 @@
         /* Restaurar transición rápida tras animación para hover */
         .tarjeta-reveal.is-visible.tarjeta-mina {
             transition: transform 0.3s var(--tm-ease),
-                        border-color 0.3s var(--tm-ease),
-                        box-shadow 0.3s var(--tm-ease);
+                        box-shadow 0.3s var(--tm-ease),
+                        opacity 0.7s var(--tm-ease);
         }
 
         /* ── Responsive tarjetas ── */
