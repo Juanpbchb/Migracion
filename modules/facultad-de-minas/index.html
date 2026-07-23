@@ -403,14 +403,14 @@
         /* ── Botón ── */
         .estudia-btn {
             font-family: 'UNAL Ancizar Sans Variable', sans-serif;
-            font-weight: 700;
+            font-weight: 550;
             font-style: italic;
             background-color: var(--accent-yellow);
             color: #3A3A39;
             text-decoration: none;
-            padding: 12px 35px;
+            padding: 6px 26px;
             border-radius: 8px;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             transition: all 0.3s ease;
             display: inline-block;
         }
@@ -938,14 +938,14 @@
             font-size: var(--title-size);
             letter-spacing: 0.01em;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 8px rgba(0, 0, 0, 0.4);
-            margin-bottom: -1px;
+            margin-bottom: 14px;
             line-height: 1.2;
         }
 
         /* ── Botones ── */
         .comunidad-btn {
             font-family: 'UNAL Ancizar Sans Variable', sans-serif;
-            font-weight: 330;
+            font-weight: 368;
             font-style: italic;
             background-color: var(--accent-yellow);
             color: var(--btn-text-color);
@@ -957,6 +957,8 @@
             display: inline-block;
             border: none;
             cursor: pointer;
+            position: relative;
+            z-index: 3;
             transition: transform 0.15s ease,
                         box-shadow 0.15s ease,
                         filter 0.15s ease;
@@ -986,7 +988,7 @@
         .comunidad-reveal[data-delay="4"] { transition-delay: 0.7s; }
 
         /* Restaurar transición rápida tras reveal para hover de botones */
-        .comunidad-reveal.is-visible.comunidad-btn {
+        .comunidad-btn.comunidad-reveal.is-visible {
             transition: transform 0.15s ease,
                         box-shadow 0.15s ease,
                         filter 0.15s ease;
@@ -998,6 +1000,166 @@
                 grid-template-columns: 1fr;
                 gap: 50px;
                 padding: 5rem 5%;
+            }
+        }
+
+        /* =============================================================
+           SECCIÓN: BANNERS DE INVESTIGACIÓN
+           ============================================================= */
+        .banners-investigacion-section,
+        .banners-investigacion-section *,
+        .banners-investigacion-section *::before,
+        .banners-investigacion-section *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .banners-investigacion-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --bg-banner-1: url('./assets/images/banners-home-sin-txt-laboratorios.png');
+            --bg-banner-2: url('./assets/images/banner-home-sin-txt-grupos.png');
+            --bg-watermark: url('./assets/images/banner-home-marca-de-agua.png');
+            --accent-yellow: #F7AD14;
+            --btn-text: #3A3A39;
+            --banner-height: 350px;
+            --wm-size: 600px;
+            --wm-top: 50%;
+            --wm-left: -200px;
+            --wm-opacity: 0.7;
+
+            margin: 4rem 0;
+            padding: 0 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ── Banner Individual ── */
+        .banners-investigacion-section .banner-item {
+            position: relative;
+            width: 100%;
+            min-height: var(--banner-height);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 60px;
+            border-radius: 16px;
+        }
+
+        /* ── Fondos con degradado ── */
+        .banners-investigacion-section .banner-item--laboratorios {
+            background: linear-gradient(to right, rgba(30,30,30,0.9) 0%, rgba(30,30,30,0.4) 60%, transparent 100%),
+                        var(--bg-banner-1) center / cover no-repeat;
+        }
+
+        .banners-investigacion-section .banner-item--grupos {
+            background: linear-gradient(to right, rgba(30,30,30,0.9) 0%, rgba(30,30,30,0.4) 60%, transparent 100%),
+                        var(--bg-banner-2) center / cover no-repeat;
+        }
+
+        /* ── Marca de Agua (Pseudo-elemento) ── */
+        .banners-investigacion-section .banner-item::before {
+            content: '';
+            position: absolute;
+            top: var(--wm-top);
+            left: var(--wm-left);
+            transform: translateY(-50%);
+            width: var(--wm-size);
+            height: var(--wm-size);
+            background: var(--bg-watermark) left center / contain no-repeat;
+            opacity: var(--wm-opacity);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ── Eyebrow ── */
+        .banners-investigacion-section .banner-eyebrow {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 300;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            color: var(--accent-yellow);
+            margin-bottom: -8px;
+            position: relative;
+            z-index: 2;
+            display: block;
+        }
+
+        /* ── Título ── */
+        .banners-investigacion-section .banner-title {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 0.01em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 8px rgba(0, 0, 0, 0.4);
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            display: block;
+        }
+
+        /* ── Botón ── */
+        .banners-investigacion-section .banner-btn {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            background-color: var(--accent-yellow);
+            color: #3A3A39;
+            text-decoration: none;
+            padding: 6px 28px;
+            border-radius: 8px;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+            border: none;
+            cursor: pointer;
+        }
+
+        .banners-investigacion-section .banner-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ── Animación scroll-reveal banners ── */
+        .banner-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .banner-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .banner-reveal[data-delay="1"] { transition-delay: 0.1s; }
+        .banner-reveal[data-delay="2"] { transition-delay: 0.35s; }
+
+        /* Restaurar transición rápida tras reveal para hover de botones */
+        .banner-reveal.is-visible .banner-btn {
+            transition: transform 0.15s ease,
+                        box-shadow 0.15s ease,
+                        filter 0.15s ease;
+        }
+
+        /* ── Responsive banners investigación ── */
+        @media (max-width: 768px) {
+            .banners-investigacion-section {
+                padding: 0 5%;
+                margin: 3rem 0;
+                gap: 20px;
+            }
+            .banners-investigacion-section .banner-item {
+                padding: 30px 25px;
+                min-height: 280px;
             }
         }
 
@@ -1199,6 +1361,27 @@
             <h2 class="comunidad-title comunidad-reveal" data-delay="3">Egresados</h2>
             <a href="#" class="comunidad-btn comunidad-reveal" data-delay="4"><strong>Más información</strong></a>
         </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECCIÓN: BANNERS DE INVESTIGACIÓN
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="banners-investigacion-section" id="banners-investigacion-section">
+
+        <!-- Banner 1: Laboratorios -->
+        <div class="banner-item banner-item--laboratorios banner-reveal" data-delay="1">
+            <span class="banner-eyebrow">Conoce nuestros</span>
+            <h2 class="banner-title">Laboratorios</h2>
+            <a href="#" class="banner-btn">Conoce más</a>
+        </div>
+
+        <!-- Banner 2: Grupos de Investigación -->
+        <div class="banner-item banner-item--grupos banner-reveal" data-delay="2">
+            <span class="banner-eyebrow">Conoce nuestros</span>
+            <h2 class="banner-title">Grupos de Investigación</h2>
+            <a href="#" class="banner-btn">Conoce más</a>
+        </div>
+
     </section>
 
 
@@ -1405,6 +1588,39 @@
             });
 
             comunidadObserver.observe(comunidadSection);
+        })();
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación Scroll-Reveal Banners de Investigación
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var bannersSection = document.getElementById('banners-investigacion-section');
+            if (!bannersSection) return;
+
+            var bannerElements = bannersSection.querySelectorAll('.banner-reveal');
+            var bannersRevealed = false;
+
+            var bannersObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !bannersRevealed) {
+                        bannersRevealed = true;
+
+                        bannerElements.forEach(function (el) {
+                            el.classList.add('is-visible');
+                        });
+
+                        bannersObserver.unobserve(bannersSection);
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            bannersObserver.observe(bannersSection);
         })();
     </script>
 
