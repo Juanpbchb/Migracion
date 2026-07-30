@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facultad de Minas – Universidad Nacional de Colombia</title>
+    <meta name="description" content="Facultad de Minas, Sede Medellín. Universidad Nacional de Colombia. Programas de pregrado, maestría, doctorado y especialización.">
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <style>
+        /* =============================================================
+           TIPOGRAFÍA INSTITUCIONAL — Fuente Variable
+           ============================================================= */
+        @font-face {
+            font-family: 'UNAL Ancizar Sans Variable';
+            src: url('./assets/fonts/AncizarSans-VariableFont_wght.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'UNAL Ancizar Sans Variable';
+            src: url('./assets/fonts/AncizarSans-Italic-VariableFont_wght.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ancizar Sans Bold Italic';
+            src: url('./assets/fonts/AncizarSans-BoldItalic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ancizar Sans Bold';
+            src: url('./assets/fonts/AncizarSans-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ancizar Sans Regular';
+            src: url('./assets/fonts/AncizarSans-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ancizar Sans Light Italic';
+            src: url('./assets/fonts/AncizarSans-LightItalic.ttf') format('truetype');
+            font-weight: normal; 
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* =============================================================
+           ESCUDO ANTI-JOOMLA (RESET SCOPED)
+           ============================================================= */
+        /* Reset para previsualización (evita bordes blancos) */
+        body { margin: 0; padding: 0; }
+        
+        .hero-minas-section, 
+        .hero-minas-section *, 
+        .hero-minas-section *::before, 
+        .hero-minas-section *::after { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        .hero-minas-section { 
+            font-family: 'Ancizar Sans', 'Inter', 'Segoe UI', sans-serif; 
+            line-height: 1.6; 
+            width: 100%;
+        }
+
+        /* =============================================================
+           UTILIDAD DE ACCESIBILIDAD
+           ============================================================= */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* =============================================================
+           HERO SECTION — TODAS las variables scoped aquí (NO en :root)
+           ============================================================= */
+        .hero-minas-section {
+            /* ── Colores ── */
+            --hm-amarillo: #F7AD14;
+            --hm-amarillo-hover: rgba(247, 178, 33, 0.25);
+            --hm-blanco: #ffffff;
+            --hm-negro: #1a1a1a;
+            --hm-overlay: rgba(0, 0, 0, 0.35);
+            --hm-separador: rgba(255, 255, 255, 0.3);
+
+            /* ── Logo (pico y martillo) ── */
+            --logo-width: 50%;
+            --logo-pos-top: -20%;
+            --logo-pos-left: -10%;
+
+            /* ── Título principal ── */
+            --title-pos-top: 28%;
+            --title-pos-left: 5%;
+            --title-color-white: #ffffff;
+            --title-color-yellow: #F7AD14;
+
+            /* ── Espaciado ── */
+            --hm-stats-py: 28px;
+            --hm-stats-px: 24px;
+
+            /* ── Transiciones ── */
+            --hm-ease-premium: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            /* ── Layout ── */
+            position: relative;
+            margin-top: 0;
+            padding-top: 0;
+            aspect-ratio: 2846 / 835;
+            min-height: 50vh; /* Fallback para navegadores sin aspect-ratio */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+
+            /* ══════════════════════════════════════════════════════════
+               IMAGEN DE FONDO PRINCIPAL
+               ══════════════════════════════════════════════════════════ */
+            background-image: url('./assets/images/bienvenidos-facultad-de-minas.webp');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: var(--hm-negro); /* Fallback mientras no haya imagen */
+        }
+
+
+        /* =============================================================
+           LOGO (PICO Y MARTILLO) — Animación de entrada
+           ============================================================= */
+        .hero-minas-logo {
+            position: absolute;
+            width: var(--logo-width);
+            top: var(--logo-pos-top);
+            left: var(--logo-pos-left);
+            z-index: 2; /* Por encima del fondo, debajo de los stats (z-index: 3) */
+            pointer-events: none;
+            animation: slideInFade 1s cubic-bezier(0.25, 0.8, 0.25, 1) 0.6s both;
+        }
+
+        @keyframes slideInFade {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* =============================================================
+           TÍTULO PRINCIPAL — Texto visible sobre el hero
+           ============================================================= */
+        .hero-text-container {
+            position: absolute;
+            top: var(--title-pos-top);
+            left: var(--title-pos-left);
+            z-index: 4;
+            opacity: 0;
+            animation: fadeUpText 0.8s ease-out 0.4s both;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .hero-main-title {
+            font-family: 'Ancizar Sans', 'Inter', 'Segoe UI', sans-serif;
+            line-height: 0.8;
+        }
+
+        .title-line-1 {
+            display: block;
+            color: var(--title-color-white);
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 300;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .title-line-2 {
+            display: block;
+            color: var(--title-color-yellow);
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-size: clamp(2.2rem, 6vw, 5rem);
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 0.01em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes fadeUpText {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =============================================================
+           BARRA DE ESTADÍSTICAS (CONTADORES)
+           ============================================================= */
+        .hero-minas-stats {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            width: 100%;
+            background: transparent;
+        }
+
+        .stat-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px var(--hm-stats-px);
+            border-right: 1px solid var(--hm-separador);
+            cursor: default;
+            transition: all 0.3s var(--hm-ease-premium);
+            position: relative;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        /* ── Hover individual (gradiente + glassmorphism) ── */
+        .stat-item:hover {
+            background: linear-gradient(
+                to bottom,
+                rgba(245, 176, 27, 0.7) 0%,
+                rgba(245, 176, 27, 0) 100%
+            );
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transform: translateY(-2px);
+        }
+
+        /* ── Número del contador ── */
+        .stat-number {
+            font-family: 'Ancizar Sans', 'Inter', 'Segoe UI', sans-serif;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            font-weight: 700;
+            color: var(--hm-blanco);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        /* ── Etiqueta descriptiva ── */
+        .stat-label {
+            font-family: 'Ancizar Sans', 'Inter', 'Segoe UI', sans-serif;
+            font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        /* =============================================================
+           SECCIÓN: ESTUDIA EN LA FACULTAD
+           ============================================================= */
+        .estudia-facultad-section, 
+        .estudia-facultad-section *, 
+        .estudia-facultad-section *::before, 
+        .estudia-facultad-section *::after { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        .estudia-facultad-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --bg-color: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-gray: #555555;
+            --btn-text: #3A3A39;
+            --accent-yellow: #F7AD14;
+
+            background-color: var(--bg-color);
+            padding: 5rem 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .estudia-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .estudia-eyebrow-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .estudia-eyebrow {
+            font-family: 'Ancizar Sans Light Italic', sans-serif;
+            color: var(--accent-yellow);
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .estudia-eyebrow-line {
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-yellow);
+            border-radius: 2px;
+        }
+
+        .estudia-title {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-dark);
+            font-size: clamp(2rem, 3vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .estudia-paragraph {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        /* ── Lista de Íconos ── */
+        .estudia-features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 35px;
+            width: 100%;
+        }
+
+        .estudia-feature-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(247, 173, 20, 0.15); /* Fondo crema sutil basado en el amarillo institucional */
+            border-radius: 8px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .icon-badge i {
+            font-size: 17px;
+            color: var(--accent-yellow);
+        }
+
+        .estudia-feature-text {
+            font-family: 'Ancizar Sans', 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 400;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+                    
+        /* ── Botón ── */
+        .estudia-btn {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 550;
+            font-style: italic;
+            background-color: var(--accent-yellow);
+            color: #3A3A39;
+            text-decoration: none;
+            padding: 6px 26px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .estudia-btn.estudia-reveal.is-visible {
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .estudia-btn.estudia-reveal.is-visible:hover,
+        .estudia-btn:hover {
+            transform: translateY(-3px) !important;
+        }
+
+        .estudia-image-container {
+            width: 100%;
+        }
+
+        .estudia-image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .estudia-facultad-section {
+                grid-template-columns: 1fr;
+                padding: 4rem 5%;
+                gap: 40px;
+            }
+        }
+
+        /* =============================================================
+           ANIMACIONES — Sección Estudia en la Facultad
+           ============================================================= */
+        /* Estado inicial: oculto y desplazado */
+        .estudia-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .estudia-reveal-image {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Estado final: visible */
+        .estudia-reveal.is-visible,
+        .estudia-reveal-image.is-visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* Delays escalonados para cada elemento */
+        .estudia-reveal[data-delay="1"] { transition-delay: 0.1s; }
+        .estudia-reveal[data-delay="2"] { transition-delay: 0.25s; }
+        .estudia-reveal[data-delay="3"] { transition-delay: 0.4s; }
+        .estudia-reveal[data-delay="4"] { transition-delay: 0.55s; }
+        .estudia-reveal[data-delay="5"] { transition-delay: 0.7s; }
+        .estudia-reveal-image { transition-delay: 0.3s; }
+
+        /* Animación de la línea decorativa */
+        .estudia-eyebrow-line {
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0.3s;
+        }
+        .estudia-eyebrow-container.is-visible .estudia-eyebrow-line {
+            transform: scaleX(1);
+        }
+
+        /* =============================================================
+           RESPONSIVE
+           ============================================================= */
+        @media (max-width: 768px) {
+            .hero-minas-section {
+                aspect-ratio: auto;
+                min-height: 55vh;
+            }
+
+            .hero-minas-stats {
+                flex-wrap: wrap;
+            }
+
+            .stat-item {
+                flex: 1 1 calc(50% - 1px);
+                border-bottom: 1px solid var(--hm-separador);
+                padding: 20px 16px;
+            }
+
+            /* En móvil: solo borde derecho en los impares */
+            .stat-item:nth-child(even) {
+                border-right: none;
+            }
+
+            /* Quitar borde inferior de los dos últimos */
+            .stat-item:nth-last-child(-n+2) {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-minas-section {
+                min-height: 45vh;
+            }
+
+            .stat-item {
+                flex: 1 1 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--hm-separador);
+            }
+
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* =============================================================
+           SECCIÓN: TARJETAS DE SERVICIOS
+           ============================================================= */
+        .tarjetas-minas-section,
+        .tarjetas-minas-section *,
+        .tarjetas-minas-section *::before,
+        .tarjetas-minas-section *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .tarjetas-minas-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --tm-bg-dark: rgba(20, 26, 35, 0.85);
+            --tm-blanco: #ffffff;
+            --tm-negro: #1A1A1A;
+            --tm-amarillo: #F7AD14;
+            --tm-card-bg: rgba(255,255,255, 0.03);
+            --tm-card-border: rgba(255,255,255, 0.1);
+            --tm-card-border-hover: rgba(255, 255, 255, 0.3);
+            --tm-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            position: relative;
+            padding: 5rem 5%;
+            background: linear-gradient(var(--tm-bg-dark), var(--tm-bg-dark)),
+                        url('./assets/images/AulaMaxima.jpg') center / cover no-repeat;
+            overflow: hidden;
+        }
+
+        /* ── Grid de Tarjetas ── */
+        .grid-tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Tarjeta individual (Glassmorphism — 2 capas) ── */
+        .tarjeta-mina {
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            color: var(--tm-blanco);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            isolation: isolate;
+            transition: transform 0.3s var(--tm-ease),
+                        box-shadow 0.3s var(--tm-ease);
+        }
+
+        /* ── Capa 1: Fondo glassmorphism (pseudo-elemento) ── */
+        .tarjeta-mina::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--tm-card-bg);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid var(--tm-card-border);
+            border-radius: inherit;
+            z-index: -1;
+            transition: border-color 0.3s var(--tm-ease);
+        }
+
+        .tarjeta-mina:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .tarjeta-mina:hover::before {
+            border-color: var(--tm-card-border-hover);
+        }
+
+        /* ── Ícono ── */
+        .tarjeta-mina-icon {
+            font-size: 34px;
+            color: var(--tm-blanco);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        /* ── Título ── */
+        .tarjeta-mina-title {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 580;
+            font-style: italic;
+            font-size: 1.3rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+        }
+
+        /* ── Párrafo ── */
+        .tarjeta-mina-text {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: 1.2 rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 15px;
+            color: var(--tm-blanco);
+        }
+
+        /* ── Botón fantasma ── */
+        .tarjeta-mina-btn {
+            font-family: 'Ancizar Sans Bold', sans-serif;
+            background: transparent;
+            border: 1px solid var(--tm-blanco);
+            color: var(--tm-blanco);
+            padding: 10px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: background 0.15s ease,
+                        border-color 0.15s ease,
+                        color 0.15s ease,
+                        transform 0.15s ease;
+            display: inline-block;
+            margin-top: auto;
+        }
+
+        .tarjeta-mina-btn:hover {
+            background: var(--tm-amarillo);
+            border-color: var(--tm-amarillo);
+            color: #3A3A39;
+            font-weight: 700;
+            transform: translateY(-3px);
+        }
+
+        /* ── Animación scroll-reveal tarjetas ── */
+        .tarjeta-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s var(--tm-ease),
+                        transform 0.7s var(--tm-ease);
+        }
+
+        .tarjeta-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delays escalonados */
+        .tarjeta-reveal[data-delay="1"] { transition-delay: 0.05s; }
+        .tarjeta-reveal[data-delay="2"] { transition-delay: 0.15s; }
+        .tarjeta-reveal[data-delay="3"] { transition-delay: 0.25s; }
+        .tarjeta-reveal[data-delay="4"] { transition-delay: 0.35s; }
+        .tarjeta-reveal[data-delay="5"] { transition-delay: 0.45s; }
+        .tarjeta-reveal[data-delay="6"] { transition-delay: 0.55s; }
+
+        /* Restaurar transición rápida tras animación para hover */
+        .tarjeta-reveal.is-visible.tarjeta-mina {
+            transition: transform 0.3s var(--tm-ease),
+                        box-shadow 0.3s var(--tm-ease),
+                        opacity 0.7s var(--tm-ease);
+        }
+
+        /* ── Responsive tarjetas ── */
+        @media (max-width: 768px) {
+            .tarjetas-minas-section {
+                padding: 4rem 5%;
+            }
+            .grid-tarjetas {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* =============================================================
+           SECCIÓN: ACERCA DE LA FACULTAD
+           ============================================================= */
+        .acerca-facultad-section,
+        .acerca-facultad-section *,
+        .acerca-facultad-section *::before,
+        .acerca-facultad-section *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .acerca-facultad-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --bg-color: #FFFFFF;
+            --accent-yellow: #F7AD14;
+            --text-gray-light: #555555;
+            --text-gray-dark: #222222;
+            --btn-text: #3A3A39;
+            --af-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            background-color: var(--bg-color);
+            padding: 5rem 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .acerca-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .acerca-title {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--accent-yellow);
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .acerca-paragraph-light {
+            font-family: 'Ancizar Sans Regular', sans-serif;
+            color: var(--text-gray-light);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .acerca-paragraph-dark {
+            font-family: 'Ancizar Sans Regular', sans-serif;
+            color: var(--text-gray-dark);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            margin-bottom: 35px;
+        }
+
+        /* ── Grid de botones 2x2 ── */
+        .acerca-buttons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .acerca-btn {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            background-color: var(--accent-yellow);
+            color: var(--btn-text);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            text-align: center;
+            display: block;
+            transition: transform 0.15s ease,
+                        box-shadow 0.15s ease,
+                        filter 0.15s ease;
+        }
+
+        .acerca-btn:hover {
+            transform: translateY(-3px);
+            
+            
+        }
+
+        /* ── Imagen ── */
+        .acerca-image-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .acerca-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        /* ── Animación scroll-reveal acerca ── */
+        .acerca-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s var(--af-ease),
+                        transform 0.8s var(--af-ease);
+        }
+
+        .acerca-reveal-image {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 1s var(--af-ease),
+                        transform 1s var(--af-ease);
+        }
+
+        .acerca-reveal.is-visible,
+        .acerca-reveal-image.is-visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        .acerca-reveal[data-delay="1"] { transition-delay: 0.1s; }
+        .acerca-reveal[data-delay="2"] { transition-delay: 0.25s; }
+        .acerca-reveal[data-delay="3"] { transition-delay: 0.4s; }
+        .acerca-reveal[data-delay="4"] { transition-delay: 0.55s; }
+        .acerca-reveal-image { transition-delay: 0.3s; }
+
+        /* Restaurar transición rápida tras reveal para hover de botones */
+        .acerca-reveal.is-visible .acerca-btn {
+            transition: transform 0.15s ease,
+                        box-shadow 0.15s ease,
+                        filter 0.15s ease;
+        }
+
+        /* ── Responsive acerca ── */
+        @media (max-width: 768px) {
+            .acerca-facultad-section {
+                grid-template-columns: 1fr;
+                padding: 4rem 5%;
+                gap: 40px;
+            }
+            .acerca-buttons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =============================================================
+           SECCIÓN: COMUNIDAD (Estudiantes y Egresados)
+           ============================================================= */
+        .comunidad-minas-section,
+        .comunidad-minas-section *,
+        .comunidad-minas-section *::before,
+        .comunidad-minas-section *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .comunidad-minas-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --bg-banner: url('./assets/images/banner-home-sin-txt-estudiantes-egresados.png');
+            --bg-watermark: url('./assets/images/banner-home-marca-de-agua.png');
+            --accent-yellow: #F7AD14;
+            --btn-text-color: #413D37;
+            --title-size: clamp(3rem, 5vw, 5rem);
+            --watermark-size: clamp(250px, 45vw, 700px);
+            --spacing-y: 8rem;
+
+            position: relative;
+            width: 100%;
+            padding: var(--spacing-y) 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            background: var(--bg-banner) center / cover no-repeat;
+            overflow: hidden;
+        }
+
+        /* ── Marca de Agua (Capa Central) — Estado inicial: oculta ── */
+        .comunidad-minas-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.6);
+            width: var(--watermark-size);
+            height: var(--watermark-size);
+            background: var(--bg-watermark) center / contain no-repeat;
+            z-index: 1;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition-delay: 0.2s;
+        }
+
+        /* ── Marca de Agua — Estado final: visible ── */
+        .comunidad-minas-section.is-visible::before {
+            opacity: 0.8;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* ── Columnas ── */
+        .columna-estudiantes,
+        .columna-egresados {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* ── Títulos ── */
+        .comunidad-title {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            color: #FFFFFF;
+            font-size: var(--title-size);
+            letter-spacing: 0.01em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 8px rgba(0, 0, 0, 0.4);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+
+        /* ── Botones ── */
+        .comunidad-btn {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 368;
+            font-style: italic;
+            background-color: var(--accent-yellow);
+            color: var(--btn-text-color);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-size: 1.6rem;
+            text-align: center;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 3;
+            transition: transform 0.15s ease,
+                        box-shadow 0.15s ease,
+                        filter 0.15s ease;
+        }
+
+        .comunidad-btn:hover {
+            transform: translateY(-3px);
+            
+        }
+
+        /* ── Animación scroll-reveal comunidad ── */
+        .comunidad-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .comunidad-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .comunidad-reveal[data-delay="1"] { transition-delay: 0.1s; }
+        .comunidad-reveal[data-delay="2"] { transition-delay: 0.3s; }
+        .comunidad-reveal[data-delay="3"] { transition-delay: 0.5s; }
+        .comunidad-reveal[data-delay="4"] { transition-delay: 0.7s; }
+
+        /* Restaurar transición rápida tras reveal para hover de botones */
+        .comunidad-btn.comunidad-reveal.is-visible {
+            transition: transform 0.15s ease,
+                        box-shadow 0.15s ease,
+                        filter 0.15s ease;
+        }
+
+        /* ── Responsive comunidad ── */
+        @media (max-width: 768px) {
+            .comunidad-minas-section {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                padding: 5rem 5%;
+            }
+        }
+
+        /* =============================================================
+           SECCIÓN: BANNERS DE INVESTIGACIÓN
+           ============================================================= */
+        .banners-investigacion-section,
+        .banners-investigacion-section *,
+        .banners-investigacion-section *::before,
+        .banners-investigacion-section *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .banners-investigacion-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --bg-banner-1: url('./assets/images/banners-home-sin-txt-laboratorios.png');
+            --bg-banner-2: url('./assets/images/banner-home-sin-txt-grupos.png');
+            --bg-watermark: url('./assets/images/banner-home-marca-de-agua.png');
+            --accent-yellow: #F7AD14;
+            --btn-text: #3A3A39;
+            --banner-height: 350px;
+            --wm-size: 600px;
+            --wm-top: 50%;
+            --wm-left: -200px;
+            --wm-opacity: 0.7;
+
+            margin: 4rem 0;
+            padding: 0 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ── Banner Individual ── */
+        .banners-investigacion-section .banner-item {
+            position: relative;
+            width: 100%;
+            min-height: var(--banner-height);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 60px;
+            border-radius: 16px;
+        }
+
+        /* ── Fondos con degradado ── */
+        .banners-investigacion-section .banner-item--laboratorios {
+            background: linear-gradient(to right, rgba(30,30,30,0.9) 0%, rgba(30,30,30,0.4) 60%, transparent 100%),
+                        var(--bg-banner-1) center / cover no-repeat;
+        }
+
+        .banners-investigacion-section .banner-item--grupos {
+            background: linear-gradient(to right, rgba(30,30,30,0.9) 0%, rgba(30,30,30,0.4) 60%, transparent 100%),
+                        var(--bg-banner-2) center / cover no-repeat;
+        }
+
+        /* ── Marca de Agua (Pseudo-elemento) ── */
+        .banners-investigacion-section .banner-item::before {
+            content: '';
+            position: absolute;
+            top: var(--wm-top);
+            left: var(--wm-left);
+            transform: translateY(-50%);
+            width: var(--wm-size);
+            height: var(--wm-size);
+            background: var(--bg-watermark) left center / contain no-repeat;
+            opacity: var(--wm-opacity);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ── Eyebrow ── */
+        .banners-investigacion-section .banner-eyebrow {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 300;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            color: var(--accent-yellow);
+            margin-bottom: -8px;
+            position: relative;
+            z-index: 2;
+            display: block;
+        }
+
+        /* ── Título ── */
+        .banners-investigacion-section .banner-title {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 0.01em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 8px rgba(0, 0, 0, 0.4);
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            display: block;
+        }
+
+        /* ── Botón ── */
+        .banners-investigacion-section .banner-btn {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            background-color: var(--accent-yellow);
+            color: #3A3A39;
+            text-decoration: none;
+            padding: 6px 28px;
+            border-radius: 8px;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+            border: none;
+            cursor: pointer;
+        }
+
+        .banners-investigacion-section .banner-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ── Animación scroll-reveal banners ── */
+        .banner-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .banner-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .banner-reveal[data-delay="1"] { transition-delay: 0.1s; }
+        .banner-reveal[data-delay="2"] { transition-delay: 0.35s; }
+
+        /* Restaurar transición rápida tras reveal para hover de botones */
+        .banner-reveal.is-visible .banner-btn {
+            transition: transform 0.15s ease,
+                        box-shadow 0.15s ease,
+                        filter 0.15s ease;
+        }
+
+        /* ── Responsive banners investigación ── */
+        @media (max-width: 768px) {
+            .banners-investigacion-section {
+                padding: 0 5%;
+                margin: 3rem 0;
+                gap: 20px;
+            }
+            .banners-investigacion-section .banner-item {
+                padding: 30px 25px;
+                min-height: 280px;
+            }
+        }
+
+        /* =============================================================
+           SECCIÓN: CONTACTO Y MAPA
+           ============================================================= */
+        .contacto-minas-section,
+        .contacto-minas-section *,
+        .contacto-minas-section *::before,
+        .contacto-minas-section *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .contacto-minas-section {
+            /* ── Variables Locales (Escudo Anti-Joomla) ── */
+            --ct-accent-yellow: #F7AD14;
+            --ct-bg-dark: #3A3A39;
+            --ct-text-white: #FFFFFF;
+            --ct-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        /* ── Estado Inicial: Oculto ── */
+        .contacto-minas-section .mapa-container {
+            opacity: 0;
+            transform: translateX(-150px);
+            transition: opacity 1s ease-out,
+                        transform 1s var(--ct-ease);
+        }
+
+        .contacto-minas-section .info-container {
+            opacity: 0;
+            transform: translateX(150px);
+            transition: opacity 1s ease-out,
+                        transform 1s var(--ct-ease);
+        }
+
+        /* ── Estado Final: Visible (cuando la sección tiene .animar-entrada) ── */
+        .contacto-minas-section.animar-entrada .mapa-container,
+        .contacto-minas-section.animar-entrada .info-container {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ── Columna Izquierda: Mapa ── */
+        .contacto-minas-section .mapa-container {
+            min-height: 400px;
+        }
+
+        .contacto-minas-section .mapa-container iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: 0;
+        }
+
+        /* ── Columna Derecha: Información de Contacto ── */
+        .contacto-minas-section .info-container {
+            --text-gray: #FFFFFF;
+            --accent-yellow: #F7AD14;
+
+            background-color: var(--ct-bg-dark);
+            padding: 5rem 10%;
+        }
+
+        .contacto-minas-section .info-title {
+            display: block;
+            color: var(--accent-yellow);
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 0.01em;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .contacto-minas-section .info-paragraph {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .contacto-minas-section .info-subtitle {
+            font-family: 'UNAL Ancizar Sans Variable', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 0.01em;
+            color: #FFFFFF;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .contacto-minas-section .info-container a {
+            color: var(--accent-yellow);
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contacto-minas-section .info-container a:hover {
+            opacity: 0.8;
+        }
+
+        /* ── Redes Sociales ── */
+        .contacto-minas-section .redes-sociales {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .contacto-minas-section .redes-sociales a {
+            color: #FFFFFF;
+            font-size: 28px;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contacto-minas-section .redes-sociales a:hover {
+            color: var(--accent-yellow);
+            opacity: 1;
+        }
+
+        /* ── Responsive contacto ── */
+        @media (max-width: 768px) {
+            .contacto-minas-section {
+                grid-template-columns: 1fr;
+            }
+
+            .contacto-minas-section .info-container {
+                padding: 3rem 5%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         HERO SECTION — FACULTAD DE MINAS
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="hero-minas-section" id="hero-minas">
+
+        <!-- Título principal visible -->
+        <div class="hero-text-container">
+            <h1 class="hero-main-title">
+                <span class="title-line-1">Bienvenidos a la</span><br>
+                <span class="title-line-2">Facultad de Minas</span>
+            </h1>
+        </div>
+
+        <!-- Logo pico y martillo (animación de entrada) -->
+        <img class="hero-minas-logo" src="./assets/images/banner-home-marca-de-agua.png" alt="" aria-hidden="true">
+
+        <!-- Barra de estadísticas / Contadores -->
+        <div class="hero-minas-stats" id="stats-bar">
+
+            <div class="stat-item">
+                <span class="stat-number" data-target="7000" data-format="miles">0</span>
+                <span class="stat-label">Estudiantes Activos</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number" data-target="12">0</span>
+                <span class="stat-label">Programas de Pregrado</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number" data-target="17">0</span>
+                <span class="stat-label">Programas de Maestría</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number" data-target="8">0</span>
+                <span class="stat-label">Programas de Doctorado</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number" data-target="19">0</span>
+                <span class="stat-label">Programas de Especialización</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         AQUÍ VAN LAS SIGUIENTES SECCIONES
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <!-- SECCIÓN: ESTUDIA EN LA FACULTAD -->
+    <section class="estudia-facultad-section" id="estudia-section">
+        <!-- Columna Izquierda (Contenido) -->
+        <div class="estudia-content">
+            <div class="estudia-eyebrow-container estudia-reveal" data-delay="1">
+                <span class="estudia-eyebrow">Estudia en la Facultad</span>
+                <div class="estudia-eyebrow-line"></div>
+            </div>
+            
+            <h2 class="estudia-title estudia-reveal" data-delay="2"><strong>Descubre tu potencial en nuestra facultad</strong></h2>
+            
+            <p class="estudia-paragraph estudia-reveal" data-delay="3">Ofrecemos una amplia gama de posibilidades educativas para potenciar tu desarrollo profesional.</p>
+            
+            <div class="estudia-features-list estudia-reveal" data-delay="4">
+                <div class="estudia-feature-item">
+                    <div class="icon-badge">
+                        <i class="ti ti-school"></i>
+                    </div>
+                    <span class="estudia-feature-text">36 programas académicos activos</span>
+                </div>
+                
+                <div class="estudia-feature-item">
+                    <div class="icon-badge">
+                        <i class="ti ti-users"></i>
+                    </div>
+                    <span class="estudia-feature-text">Comunidad de 7.000 estudiantes</span>
+                </div>
+                
+                <div class="estudia-feature-item">
+                    <div class="icon-badge">
+                        <i class="ti ti-certificate"></i>
+                    </div>
+                    <span class="estudia-feature-text">Formación desde pregrado hasta doctorado</span>
+                </div>
+            </div>
+            
+            <a href="#" class="estudia-btn estudia-reveal" data-delay="5">Conoce más</a>
+        </div>
+
+        <!-- Columna Derecha (Imagen) -->
+        <div class="estudia-image-container estudia-reveal-image">
+            <img src="./assets/images/Escalas-M3.jpg" alt="Estudia en la Facultad de Minas">
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECCIÓN: TARJETAS DE SERVICIOS
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="tarjetas-minas-section" id="tarjetas-section">
+        <div class="grid-tarjetas">
+
+            <!-- Tarjeta 1: Noticias -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="1">
+                <i class="ti ti-calendar-event tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Noticias</h3>
+                <p class="tarjeta-mina-text">¡No te pierdas las noticias de nuestra Facultad! Mantente informado sobre eventos, convocatorias, actividades académicas y las últimas novedades.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 2: Museo de Geociencias -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="2">
+                <i class="ti ti-building-bank tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Museo de Geociencias</h3>
+                <p class="tarjeta-mina-text">Explora el fascinante mundo de la ciencia en nuestro museo. ¡Ven y descubre con nosotros!</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 3: Trámites Estudiantiles -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="3">
+                <i class="ti ti-file-description tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Trámites Estudiantiles</h3>
+                <p class="tarjeta-mina-text">Gestiona de manera sencilla tus solicitudes académicas, certificados, procesos administrativos y demás trámites estudiantiles.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 4: Graduandos -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="4">
+                <i class="ti ti-school tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Graduandos</h3>
+                <p class="tarjeta-mina-text">Conoce toda la información relacionada con grados, requisitos, fechas y procesos académicos para tu camino hacia la graduación.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 5: Campus Sostenible -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="5">
+                <i class="ti ti-home-eco tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Campus Sostenible</h3>
+                <p class="tarjeta-mina-text">Promovemos un campus comprometido con la sostenibilidad, el cuidado del medio ambiente y el desarrollo de prácticas responsables.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+            <!-- Tarjeta 6: Servicios de Laboratorios -->
+            <div class="tarjeta-mina tarjeta-reveal" data-delay="6">
+                <i class="ti ti-flask tarjeta-mina-icon"></i>
+                <h3 class="tarjeta-mina-title">Servicios de Laboratorios de Extensión</h3>
+                <p class="tarjeta-mina-text">Conoce nuestros servicios de laboratorio de alta calidad para investigación, análisis y desarrollo científico.</p>
+                <a href="#" class="tarjeta-mina-btn">Ver más</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECCIÓN: ACERCA DE LA FACULTAD
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="acerca-facultad-section" id="acerca-section">
+        <!-- Columna Izquierda (Contenido) -->
+        <div class="acerca-content">
+            <h2 class="acerca-title acerca-reveal" data-delay="1">Acerca de la Facultad</h2>
+
+            <p class="acerca-paragraph-light acerca-reveal" data-delay="2">La Facultad de Minas de la Universidad Nacional de Colombia, Sede Medellín, es una de las instituciones académicas más importantes del país en el área de ingeniería y ciencias aplicadas. Desde su fundación en 1886, ha formado generaciones de profesionales comprometidos con el desarrollo científico, tecnológico y social de Colombia.</p>
+
+            <p class="acerca-paragraph-dark acerca-reveal" data-delay="3">Hoy, frente a los constantes avances científicos y tecnológicos, la Facultad continúa fortaleciendo sus programas académicos, impulsando la investigación de alto impacto y promoviendo la extensión universitaria como pilares fundamentales de su misión institucional.</p>
+
+            <div class="acerca-buttons-grid acerca-reveal" data-delay="4">
+                <a href="#" class="acerca-btn"><strong>Dependencias</strong></a>
+                <a href="#" class="acerca-btn"><strong>Departamentos e institutos</strong></a>
+                <a href="#" class="acerca-btn"><strong>Directorio docente</strong></a>
+                <a href="#" class="acerca-btn"><strong>Áreas curriculares</strong></a>
+            </div>
+        </div>
+
+        <!-- Columna Derecha (Imagen) -->
+        <div class="acerca-image-container acerca-reveal-image">
+            <img src="./assets/images/M3-Arco-Frente-M10.jpg" alt="Acerca de la Facultad de Minas">
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECCIÓN: COMUNIDAD (Estudiantes y Egresados)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="comunidad-minas-section" id="comunidad-section">
+        <!-- Columna Izquierda: Estudiantes -->
+        <div class="columna-estudiantes">
+            <h2 class="comunidad-title comunidad-reveal" data-delay="1">Estudiantes</h2>
+            <a href="#" class="comunidad-btn comunidad-reveal" data-delay="2"><strong>Más información</strong></a>
+        </div>
+
+        <!-- Columna Derecha: Egresados -->
+        <div class="columna-egresados">
+            <h2 class="comunidad-title comunidad-reveal" data-delay="3">Egresados</h2>
+            <a href="#" class="comunidad-btn comunidad-reveal" data-delay="4"><strong>Más información</strong></a>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECCIÓN: BANNERS DE INVESTIGACIÓN
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="banners-investigacion-section" id="banners-investigacion-section">
+
+        <!-- Banner 1: Laboratorios -->
+        <div class="banner-item banner-item--laboratorios banner-reveal" data-delay="1">
+            <span class="banner-eyebrow">Conoce nuestros</span>
+            <h2 class="banner-title">Laboratorios</h2>
+            <a href="#" class="banner-btn">Conoce más</a>
+        </div>
+
+        <!-- Banner 2: Grupos de Investigación -->
+        <div class="banner-item banner-item--grupos banner-reveal" data-delay="2">
+            <span class="banner-eyebrow">Conoce nuestros</span>
+            <h2 class="banner-title">Grupos de Investigación</h2>
+            <a href="#" class="banner-btn">Conoce más</a>
+        </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECCIÓN: CONTACTO Y MAPA
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="contacto-minas-section" id="contacto-section">
+
+        <!-- Columna Izquierda: Mapa -->
+        <div class="mapa-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1537.9073102858176!2d-75.59319348766607!3d6.2741495222042145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44293e9a8bd9af%3A0x7a6de9253e7edff2!2sUniversidad%20Nacional%20De%20Colombia!5e0!3m2!1ses-419!2sus!4v1785347309304!5m2!1ses-419!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa de ubicación Facultad de Minas — Carrera 80 #65-223, Medellín">
+            </iframe>
+        </div>
+
+        <!-- Columna Derecha: Información de Contacto -->
+        <div class="info-container">
+            <h2 class="info-title">Información de contacto</h2>
+
+            <p class="info-paragraph">
+                Dirección: <a href="https://maps.app.goo.gl/uoNWF5aXhcRDcxSy5">Cra. 80 #65-223, Robledo, Medellín, Antioquia</a><br>
+                Campus: <a href="https://maps.app.goo.gl/uoNWF5aXhcRDcxSy5">Robledo</a><br>
+                Teléfono: <a href="tel:+574255000">+57 (604) 425 5000</a><br>
+                Correo: <a href="mailto:decminas@unal.edu.co">decminas@unal.edu.co</a>
+            </p>
+
+            <h3 class="info-subtitle">Directorio institucional</h3>
+            <p class="info-paragraph">
+                Consulta el <a href="#">directorio de dependencias y contactos</a> de la Facultad de Minas
+            </p>
+
+            <h3 class="info-subtitle">Enlaces de interés</h3>
+            <p class="info-paragraph">
+                <a href="https://unal.edu.co/proteccion-de-datos-personales">Protección de Datos Personales</a>
+            </p>
+
+            <h3 class="info-subtitle">Conoce nuestras redes</h3>
+            <div class="redes-sociales">
+                <a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+                <a href="#" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación de Contadores con IntersectionObserver
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            /**
+             * Formatea un número con separador de miles (punto).
+             * Ej: 7000 → "7.000"
+             */
+            function formatMiles(n) {
+                return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            /**
+             * Anima un contador de 0 hasta `target` en `duration` ms.
+             * Usa requestAnimationFrame para fluidez.
+             */
+            function animateCounter(element, target, duration) {
+                const useMiles = element.dataset.format === 'miles';
+                const startTime = performance.now();
+
+                function update(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+
+                    // Ease-out quad para desaceleración natural
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.floor(eased * target);
+
+                    element.textContent = useMiles ? formatMiles(current) : current;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                        // Asegurar valor final exacto
+                        element.textContent = useMiles ? formatMiles(target) : target;
+                    }
+                }
+
+                requestAnimationFrame(update);
+            }
+
+            /**
+             * IntersectionObserver: dispara la animación cuando
+             * la barra de stats entra en el viewport.
+             */
+            const statsBar = document.getElementById('stats-bar');
+            let animated = false;
+
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+
+                        const counters = statsBar.querySelectorAll('.stat-number');
+                        counters.forEach(function (counter) {
+                            const target = parseInt(counter.dataset.target, 10);
+                            animateCounter(counter, target, 1500);
+                        });
+
+                        observer.unobserve(statsBar);
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            observer.observe(statsBar);
+        })();
+
+        /* ═══════════════════════════════════════════════════════════════
+           Animación Scroll-Reveal — Sección Estudia en la Facultad
+           ═══════════════════════════════════════════════════════════════ */
+        (function () {
+            'use strict';
+
+            // Espera a que las animaciones del Hero terminen (~2.8s)
+            // antes de activar el observer de esta sección.
+            setTimeout(function () {
+                var estudiaSection = document.getElementById('estudia-section');
+                if (!estudiaSection) return;
+
+                var revealElements = estudiaSection.querySelectorAll('.estudia-reveal, .estudia-reveal-image');
+                var revealed = false;
+
+                var revealObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting && !revealed) {
+                            revealed = true;
+
+                            revealElements.forEach(function (el) {
+                                el.classList.add('is-visible');
+                            });
+
+                            revealObserver.unobserve(estudiaSection);
+                        }
+                    });
+                }, {
+                    threshold: 0.15
+                });
+
+                revealObserver.observe(estudiaSection);
+            }, 580);
+        })();
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación Scroll-Reveal Tarjetas de Servicios
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var tarjetasSection = document.getElementById('tarjetas-section');
+            if (!tarjetasSection) return;
+
+            var tarjetas = tarjetasSection.querySelectorAll('.tarjeta-reveal');
+            var tarjetasRevealed = false;
+
+            var tarjetasObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !tarjetasRevealed) {
+                        tarjetasRevealed = true;
+
+                        tarjetas.forEach(function (el) {
+                            el.classList.add('is-visible');
+                        });
+
+                        tarjetasObserver.unobserve(tarjetasSection);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            tarjetasObserver.observe(tarjetasSection);
+        })();
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación Scroll-Reveal Acerca de la Facultad
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var acercaSection = document.getElementById('acerca-section');
+            if (!acercaSection) return;
+
+            var acercaElements = acercaSection.querySelectorAll('.acerca-reveal, .acerca-reveal-image');
+            var acercaRevealed = false;
+
+            var acercaObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !acercaRevealed) {
+                        acercaRevealed = true;
+
+                        acercaElements.forEach(function (el) {
+                            el.classList.add('is-visible');
+                        });
+
+                        acercaObserver.unobserve(acercaSection);
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            acercaObserver.observe(acercaSection);
+        })();
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación Scroll-Reveal Comunidad
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var comunidadSection = document.getElementById('comunidad-section');
+            if (!comunidadSection) return;
+
+            var comunidadElements = comunidadSection.querySelectorAll('.comunidad-reveal');
+            var comunidadRevealed = false;
+
+            var comunidadObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !comunidadRevealed) {
+                        comunidadRevealed = true;
+
+                        comunidadElements.forEach(function (el) {
+                            el.classList.add('is-visible');
+                        });
+
+                        // Activar animación de la marca de agua (::before)
+                        comunidadSection.classList.add('is-visible');
+
+                        comunidadObserver.unobserve(comunidadSection);
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            comunidadObserver.observe(comunidadSection);
+        })();
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación Scroll-Reveal Banners de Investigación
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var bannersSection = document.getElementById('banners-investigacion-section');
+            if (!bannersSection) return;
+
+            var bannerElements = bannersSection.querySelectorAll('.banner-reveal');
+            var bannersRevealed = false;
+
+            var bannersObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !bannersRevealed) {
+                        bannersRevealed = true;
+
+                        bannerElements.forEach(function (el) {
+                            el.classList.add('is-visible');
+                        });
+
+                        bannersObserver.unobserve(bannersSection);
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            bannersObserver.observe(bannersSection);
+        })();
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Animación Scroll-Reveal Contacto y Mapa
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var contactoSection = document.getElementById('contacto-section');
+            if (!contactoSection) return;
+
+            var contactoObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        contactoSection.classList.add('animar-entrada');
+                        contactoObserver.disconnect();
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            contactoObserver.observe(contactoSection);
+        })();
+    </script>
+
+</body>
+</html>
