@@ -548,7 +548,7 @@
 
         .tarjetas-minas-section {
             /* ── Variables Locales (Escudo Anti-Joomla) ── */
-            --tm-bg-dark: rgba(20, 26, 35, 0.85);
+            --tm-bg-dark: rgba(20, 26, 35, 0.65);
             --tm-blanco: #ffffff;
             --tm-negro: #1A1A1A;
             --tm-amarillo: #F7AD14;
@@ -596,7 +596,7 @@
             inset: 0;
             background: var(--tm-card-bg);
             backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(4px);
             border: 1px solid var(--tm-card-border);
             border-radius: inherit;
             z-index: -1;
@@ -604,8 +604,7 @@
         }
 
         .tarjeta-mina:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
         }
 
         .tarjeta-mina:hover::before {
@@ -625,7 +624,7 @@
             font-family: 'UNAL Ancizar Sans Variable', sans-serif;
             font-weight: 580;
             font-style: italic;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             letter-spacing: 0.02em;
             margin-bottom: 15px;
             color: #FFFFFF;
@@ -636,7 +635,7 @@
             font-family: 'UNAL Ancizar Sans Variable', sans-serif;
             font-weight: 300;
             font-style: italic;
-            font-size: 1.2 rem;
+            font-size: 1.15rem;
             letter-spacing: 0.02em;
             margin-bottom: 15px;
             color: var(--tm-blanco);
@@ -651,7 +650,7 @@
             padding: 10px 25px;
             border-radius: 4px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 0.03em;
             cursor: pointer;
             transition: background 0.15s ease,
@@ -670,26 +669,26 @@
             transform: translateY(-3px);
         }
 
-        /* ── Animación scroll-reveal tarjetas ── */
+        /* ── Animación scroll-reveal tarjetas (Cascada + Scale) ── */
         .tarjeta-reveal {
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.7s var(--tm-ease),
-                        transform 0.7s var(--tm-ease);
+            transform: translateY(50px) scale(0.85);
+            transition: opacity 0.8s var(--tm-ease),
+                        transform 0.8s var(--tm-ease);
         }
 
         .tarjeta-reveal.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        /* Delays escalonados */
-        .tarjeta-reveal[data-delay="1"] { transition-delay: 0.05s; }
-        .tarjeta-reveal[data-delay="2"] { transition-delay: 0.15s; }
-        .tarjeta-reveal[data-delay="3"] { transition-delay: 0.25s; }
-        .tarjeta-reveal[data-delay="4"] { transition-delay: 0.35s; }
-        .tarjeta-reveal[data-delay="5"] { transition-delay: 0.45s; }
-        .tarjeta-reveal[data-delay="6"] { transition-delay: 0.55s; }
+        /* Delays escalonados — efecto dominó/cascada */
+        .tarjeta-reveal[data-delay="1"] { transition-delay: 0.0s; }
+        .tarjeta-reveal[data-delay="2"] { transition-delay: 0.12s; }
+        .tarjeta-reveal[data-delay="3"] { transition-delay: 0.24s; }
+        .tarjeta-reveal[data-delay="4"] { transition-delay: 0.36s; }
+        .tarjeta-reveal[data-delay="5"] { transition-delay: 0.48s; }
+        .tarjeta-reveal[data-delay="6"] { transition-delay: 0.60s; }
 
         /* Restaurar transición rápida tras animación para hover */
         .tarjeta-reveal.is-visible.tarjeta-mina {
@@ -1725,6 +1724,7 @@
             tarjetasObserver.observe(tarjetasSection);
         })();
     </script>
+
 
     <!-- ═══════════════════════════════════════════════════════════════
          JAVASCRIPT — Animación Scroll-Reveal Acerca de la Facultad
