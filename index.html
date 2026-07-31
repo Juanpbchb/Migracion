@@ -1725,6 +1725,43 @@
         })();
     </script>
 
+    <!-- ═══════════════════════════════════════════════════════════════
+         JAVASCRIPT — Tilt 3D Hover en Tarjetas de Servicios
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            var tarjetas = document.querySelectorAll('.tarjeta-mina');
+            var maxTilt = 2; // Grados máximos de inclinación
+
+            tarjetas.forEach(function (card) {
+
+                card.addEventListener('mouseenter', function () {
+                    card.style.transition = 'transform 0.1s ease-out';
+                });
+
+                card.addEventListener('mousemove', function (e) {
+                    var rect = card.getBoundingClientRect();
+
+                    var pX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+                    var pY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+
+                    var rotateY = pX * maxTilt;
+                    var rotateX = -pY * maxTilt;
+
+                    card.style.transform =
+                        'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-10px)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                    card.style.transform = '';
+                });
+            });
+        })();
+    </script>
+
 
     <!-- ═══════════════════════════════════════════════════════════════
          JAVASCRIPT — Animación Scroll-Reveal Acerca de la Facultad
